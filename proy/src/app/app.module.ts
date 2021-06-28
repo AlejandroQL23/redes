@@ -10,12 +10,35 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule, Routes } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MainComponent } from './main/main.component';
+import { GameComponent } from './game/game.component';
 
+const appRoutes: Routes = [
+  {
+    path: 'Main',
+    component: MainComponent,
+    data: { title: 'Principal' }
+  },
+  {
+    path: 'Game',
+    component: GameComponent,
+    data: { title: 'Juego' }
+  },
+  { path: '',
+  redirectTo: '/Main',
+  pathMatch: 'full'
+}
+
+];
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    MainComponent,
+    GameComponent
+    
   ],
   imports: [
+    RouterModule.forRoot(appRoutes),
     FormsModule,
     ReactiveFormsModule,
     BrowserModule,

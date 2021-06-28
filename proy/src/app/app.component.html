@@ -1,0 +1,146 @@
+    <!-- PRE LOADER -->
+    <section class="preloader">
+      <div class="spinner">
+
+          <span class="spinner-rotate"></span>
+
+      </div>
+  </section>
+
+
+  <!-- MENU -->
+  <section class="navbar custom-navbar navbar-fixed-top" role="navigation">
+      <div class="container">
+
+          <div class="navbar-header">
+              <button class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                  <span class="icon icon-bar"></span>
+                  <span class="icon icon-bar"></span>
+                  <span class="icon icon-bar"></span>
+              </button>
+
+              <!-- lOGO TEXT HERE -->
+              <a class="navbar-brand"><img src="../assets/images/32.png"></a>
+
+          </div>
+
+          <!-- MENU LINKS -->
+          <div class="collapse navbar-collapse">
+              <ul class="nav navbar-nav navbar-nav-first">
+                  <li><a href="#contact" class="smoothScroll">Jugar</a></li>
+              </ul>
+
+              <ul class="nav navbar-nav navbar-right">
+                  <li><a> Cuidado con el coronavirus</a></li>
+              </ul>
+          </div>
+
+      </div>
+  </section>
+
+
+
+  <div class="text-center">
+    <h1 class="display-4">contagiaDOS</h1>
+    <p>El juego en el que la estrategia puede salvarte o matarte</p>
+</div>
+
+
+  <!-- CONTACT -->
+  <section id="contact">
+      <div class="container">
+          <div class="row">
+
+              <div class="col-md-6 col-sm-12">
+                  <label>Cantidad de jugadores:</label>
+                  <input type="number" class="form-control" placeholder="Cantidad de jugadores" name="num" required="">
+                  <form id="contact-form" role="form" action="" method="post">
+                      <div class="section-title">
+                          <h2>Ingresa tus datos</h2>
+                          <h6>Juega con tus amigos, pero no te fies de ellos</h6>
+                      </div>
+
+                      <div class="col-md-12 col-sm-12">
+                          <input type="text" [(ngModel)]="gameData.name" class="form-control" placeholder="Ingrese su nombre" name="name" required="">
+
+                          <input type="text" [(ngModel)]="gameData.password" class="form-control" placeholder="Ingrese una contraseña" name="password" required="">
+
+                          <input type="text" [(ngModel)]="gameData.server" class="form-control" placeholder="Ingrese servidor" name="server" required="">
+                      </div>
+
+                      <div class="col-md-4 col-sm-12">
+                          <input (click)="newGame()" type="submit" class="form-control" name="createNew" value="Crear partida">
+                      </div>
+                      <div class="col-md-4 col-sm-12">
+                          <input type="submit" class="form-control" name="join" value="Unirse partida">
+                      </div>
+                      <div class="col-md-4 col-sm-12">
+                          <input type="submit" class="form-control" name="Start" value="Iniciar partida">
+                      </div>
+
+                  </form>
+              </div>
+
+              <div class="col-md-6 col-sm-12">
+                  <!-- Collapse buttons -->
+                  <div>
+                      <button class="btn btn-secondary" type="button" data-toggle="collapse" data-target="#collapseExample"
+                      (click)="isCollapsed = !isCollapsed"
+                      [attr.aria-expanded]="!isCollapsed" aria-controls="collapseExample">
+                          NombreIngresadoC:
+                      </button>
+                      <button class="btn btn-secondary" type="button" data-toggle="collapse" data-target="#collapseExample2"
+                              (click)="isCollapsed2 = !isCollapsed2"
+                              [attr.aria-expanded]="!isCollapsed2" aria-controls="collapseExample2">
+                          NombreIngresadoP:
+                      </button>
+                  </div>
+                  <!-- / Collapse buttons -->
+                  <!-- Collapsible element -->
+                  <div class="collapse" id="collapseExample" [ngbCollapse]="isCollapsed">
+                      <div class="card" style="width: 18rem;">
+                          <div class="card-body">
+                              <h5 class="card-title">Eres: </h5>
+                              <p class="card-text">Puntos:</p>
+                              <br>
+                              <p class="card-text">Lider:</p>
+                              <br>
+                              <p class="card-text">Dueño:</p>
+                              <br>
+                              <p class="card-text">Semana:</p>
+                              <button href="#" class="btn btn-success">Usar mascarilla</button>
+                          </div>
+                      </div>
+                  </div>
+                  <!---->
+                  <div class="collapse" id="collapseExample2" [ngbCollapse]="isCollapsed2">
+                      <div class="card" style="width: 18rem;">
+                          <div class="card-body">
+                              <h5 class="card-title">Eres: , junto con: </h5>
+                              <p class="card-text">Puntos:</p>
+                              <br>
+                              <p class="card-text">Lider:</p>
+                              <br>
+                              <p class="card-text">Dueño:</p>
+                              <br>
+                              <p class="card-text">Semana:</p>
+                              <br>
+                              <p class="card-text">Elige las personas que saldrán:</p>
+                              <div class="form-check">
+                                  <input class="form-check-input" type="checkbox" value="" id="flexCheckIndeterminate">
+                                  <label class="form-check-label" for="flexCheckIndeterminate">
+                                      Nombres
+                                  </label>
+                              </div>
+                              <button href="#" class="btn btn-success">Usar mascarilla</button>
+                              <button href="#" class="btn btn-danger">No usar mascarilla</button>
+                          </div>
+                      </div>
+                  </div>
+
+                  <!-- / Collapsible element -->
+              </div>
+
+          </div>
+      </div>
+  </section>

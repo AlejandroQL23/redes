@@ -1,9 +1,0 @@
-{
-  "runtimeOptions": {
-    "additionalProbingPaths": [
-      "C:\\Users\\Ale\\.dotnet\\store\\|arch|\\|tfm|",
-      "C:\\Users\\Ale\\.nuget\\packages",
-      "C:\\Program Files (x86)\\Progress\\ToolboxNuGetPackages"
-    ]
-  }
-}

@@ -76,59 +76,63 @@ export class RestService {
       };
     return this.http.get(this.getEndpoint() + 'game/'+gameId, httpOptions);
     }
-    
+
+
     //PUT
-    enterPlayer(gameId:string,namePlayer:string,passwordRound:string): Observable<any>{
+    enterPlayer(enterPlayerData:any): Observable<any>{
       const httpOptions = {
         headers : new HttpHeaders({
           'Content-Type': 'application/json',
-          'name':namePlayer,
-          'password': passwordRound
+          'name' : enterPlayerData.name,
+          'password': enterPlayerData.password
           
         })
       };
-    
-      return this.http.put<any>(this.getEndpoint() + 'game/'+gameId+'/join', httpOptions);
+    const body={};
+      return this.http.put(this.getEndpoint() + 'game/'+enterPlayerData.gameId+'/join',body, httpOptions);
     }
     
     //HEAD
-    gameStart(gameId:string,gameOwner:string,gamePassword:string): Observable<any>{
+    gameStart(gameData:any): Observable<any>{
     const httpOptions = {
       headers : new HttpHeaders({
         'Content-Type': 'application/json',
-        'name':gameOwner,
-        'password': gamePassword
-        
+        'name':gameData.name,
+        'password': gameData.password
       })
     };
     
-    return this.http.head(this.getEndpoint() + 'game/'+gameId+'/start', httpOptions);
+    return this.http.head(this.getEndpoint() + 'game/'+gameData.gameId+'/start', httpOptions);
     }
     
     //POST1
-    setGroup(name:string,password:string,gameId:string,groupParticipants:string[]): Observable<any>{
+    setGroup(groupPro:any,forPartici:any): Observable<any>{
       const httpOptions = {
         headers : new HttpHeaders({
           'Content-Type': 'application/json',
-          'name':name,
-          'password': password
+          'name':groupPro.name,
+          'password': groupPro.password
         })
       };
-    
-      return this.http.post<any>(this.getEndpoint() + 'game/'+gameId+'/group',JSON.stringify(groupParticipants), httpOptions);
+      const body={
+        'group' : [forPartici.player1,forPartici.player2]
+      };
+      return this.http.post<any>(this.getEndpoint() + 'game/'+groupPro.gameId+'/group',JSON.stringify(body), httpOptions);
     }
     
     //POST2
-    startRound(pshycho:boolean,nameGame:string,roundPassword:string,gameId:string): Observable<any>{
+    startRound(Ispsycho:boolean,go:any): Observable<any>{
       const httpOptions = {
         headers : new HttpHeaders({
           'Content-Type': 'application/json',
-          'name':nameGame,
-          'password' : roundPassword
+          'name': go.name,
+          'password' : go.password
         })
       };
-    
-      return this.http.post<any>(this.getEndpoint() + 'game/'+gameId+'/go',JSON.stringify(pshycho), httpOptions);
+      const body={
+        'psycho' : Ispsycho
+      };
+      return this.http.post<any>(this.getEndpoint() + 'game/'+go.gameId+'/go',JSON.stringify(body), httpOptions);
     }
     
 

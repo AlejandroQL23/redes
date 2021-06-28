@@ -101,8 +101,8 @@ input::placeholder {
 
   #contact-form input[type='submit']:hover {
     background: transparent;
-    border-color: #ffffff;
-    color: #ffffff;
+    border-color: #0a738d;
+    color: #0a738d;
   }
 
    /*---------------------------------------

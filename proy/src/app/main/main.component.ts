@@ -2,6 +2,7 @@ import { Component, OnInit, Input} from '@angular/core';
 import { RestService } from '../rest.service'; 
 import { ActivatedRoute, Router } from '@angular/router';
 import { ModalDismissReasons, NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
+import Swal from 'sweetalert2';
 
 
 @Component({
@@ -11,30 +12,29 @@ import { ModalDismissReasons, NgbModal, NgbModalRef } from '@ng-bootstrap/ng-boo
 })
 export class MainComponent implements OnInit {
 
- 
-  @Input() playerData = {gameId:'', password:'', name:''};
+  title = 'appBootstrap';
+  games:any = [];
+  game : any;
+
+  @Input() playerData = {gameId:'',  owner:'', password:''};
   @Input() enterPlayerData = {gameId:'', name:'',password:''};
   @Input() go = {gameId:'', name:'',password:''};
   @Input() startGame = {gameId:'', name:'',password:''};
   @Input() groupPro = {gameId:'', name:'',password:''};
   @Input() forPartici = {player1:'',player2:''};
+  @Input() gameData = {ownerGame:'', password:'', name:''};
   closeResult: string;
 
   IsHidden= false;
+  IsHidden2= true;
 
   onSelect(){
   this.IsHidden= !this.IsHidden;
+  this.IsHidden2= !this.IsHidden2;
+  
   }
-
-  title = 'appBootstrap';
-  games:any = [];
-  game : any;
-  @Input() gameData = {ownerGame:'', password:'', name:''};
-
-
+  
   constructor(public rest:RestService, private route: ActivatedRoute, private router: Router,  private modalService: NgbModal) { }
-
-
 
   ngOnInit() {
     this.getGames();
@@ -48,6 +48,10 @@ export class MainComponent implements OnInit {
       this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
     });
     this.getGame(id,this.playerData);
+    this.getGame(id,this.enterPlayerData);
+    this.getGame(id,this.startGame);
+    this.getGame(id,this.groupPro);
+    this.getGame(id,this.go);
   }
 
 
@@ -60,7 +64,6 @@ export class MainComponent implements OnInit {
       return `with: ${reason}`;
     }
   }
-
 
   getGames() {
     this.games = [];
@@ -79,26 +82,57 @@ export class MainComponent implements OnInit {
     });
   }
 
-createGame() {
-  /*this.rest.createGame(this.gameData.name, this.gameData).subscribe((result) => {
-    console.log("si pasa por el post");
-  }, (err) => {
-    console.log(err);
-  });*/
-  this.router.navigate(['/Game']);
-}
+  createGame(name,pass) {
+    /*this.rest.createGame(this.gameData.name, this.gameData).subscribe((result) => {
+      console.log("si pasa por el post");
+    }, (err) => {
+      console.log(err);
+    });*/
+    this.loading(name, pass);
+  }
 
-getRoundsByID() {
-  this.rest.getRoundListByID(this.playerData,this.playerData.gameId).subscribe((data: {}) => {
-    console.log(data);
-    this.game = data;
-  });
-}  
+  getRoundsByID() {
+    this.rest.getRoundListByID(this.playerData,this.playerData.gameId).subscribe((data: {}) => {
+      console.log(data);
+      this.game = data;
+    });
+  }  
 
-refresh(): void { window.location.reload(); }
+  loading(name, pass) {
+    let timerInterval
+    Swal.fire({
+      title: 'Credenciales!',
+      html: 'Nombre del servidor: '+ name +'<br> Contraseña: '+ pass,
+      timer: 3000,
+      timerProgressBar: true,
+      didOpen: () => {
+        Swal.showLoading()
+        timerInterval = setInterval(() => {
+          const content = Swal.getHtmlContainer()
+          if (content) {
+            const b = content.querySelector('b')
+            // if (b) {
+            //   b.textContent = Swal.getTimerLeft()
+            // }
+          }
+        }, 100)
+      },
+      willClose: () => {
+        clearInterval(timerInterval)
+        this.refresh();
+      }
+    }).then((result) => {
+      /* Read more about handling dismissals below */
+      if (result.dismiss === Swal.DismissReason.timer) {
+        console.log('I was closed by the timer')
+      }
+    })
+  }
+
+  refresh(): void { window.location.reload(); }
 
 ///////////////////////////////////////////////////////////
-public isCollapsed = true;
+  public isCollapsed = true;
   public isCollapsed2 = true;
 
   enterPlayer() {

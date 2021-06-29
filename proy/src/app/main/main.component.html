@@ -45,7 +45,7 @@
     <p>El juego en el que la estrategia puede salvarte o matarte</p>
 
 
-    <button class="dropdown-header" (click)="onSelect()">Link 2</button> 
+    <!-- <button class="dropdown-header" (click)="onSelect()">Link 2</button>  -->
 </div>
 
 
@@ -55,10 +55,7 @@
         <div class="row">
 
             <div class="col-md-6 col-sm-12">
-                <div class="col-md-4 col-sm-12">
-                    <input (click)="refresh()" type="submit"  class="form-control" name="createNew"
-                        value="Refrescar">
-                </div>
+                
                 <form id="contact-form" role="form" action="" method="post">
                     <div class="section-title">
                         <h2>Ingresa tus datos</h2>
@@ -77,47 +74,35 @@
                     </div>
 
                     <div class="col-md-4 col-sm-12">
-                        <input (click)="createGame()" [routerLink]="['/Game/']" type="submit" class="form-control" name="createNew"
+                        <input (click)="createGame(gameData.name, gameData.password)" type="submit" class="form-control" name="createNew"
                             value="Crear partida">
                     </div>
+
                     <div class="col-md-4 col-sm-12">
-                        <input type="submit" class="form-control" name="join" value="Unirse partida">
+                        <input (click)="refresh()" type="submit"  class="form-control bg-primary text-light" name="createNew"
+                            value="Refrescar">
                     </div>
-
-
+                
                 </form>
             </div>
-
             <div class="col-md-6 col-sm-12">
-
                 <!-- / Collapsible element -->
-
                 <table class='table' *ngIf="games">
                     <thead>
                         <tr>
                             <th>Game Name</th>
-
                         </tr>
-
                     </thead>
                     <tbody>
-
                         <tr *ngFor="let s of games; let i=index;">
-
                             <td>{{ s.name }}</td>
-
                             <td>
                                 <a (click)="open(content, s.gameId)"> Unirse </a>
-
-
                             </td>
                         </tr>
-
                     </tbody>
-
                 </table>
             </div>
-
         </div>
     </div>
 
@@ -125,12 +110,10 @@
 
 <!---->
 
-<section id="game">
+<section id="game" [hidden]="IsHidden2">
     <div class="container">
         <div class="row">
-
-
-            <div class="col-md-6 col-sm-12">
+            <div class="col-md-6 col-sm-12 d-flex">
                 <!-- Collapse buttons -->
                 <div>
                     <button class="btn btn-secondary" type="button" data-toggle="collapse"
@@ -143,26 +126,13 @@
                         [attr.aria-expanded]="!isCollapsed2" aria-controls="collapseExample2">
                         NombreIngresadoP: 
                     </button>
-
-
-                    <div class="col-md-4 col-sm-12">
-                        <input type="submit" class="form-control" name="Start" value="Iniciar partida">
-                    </div>
                 </div>
                 <!-- / Collapse buttons -->
                 <!-- Collapsible element -->
                 <div class="collapse" id="collapseExample" [ngbCollapse]="isCollapsed">
                     <div class="card" style="width: 18rem;">
                         <div class="card-body">
-                            <h5 class="card-title">Eres: </h5>
-                            <!--<p class="card-text">Puntos:</p>
-                            <br>
-                            <p class="card-text">Lider:</p>
-                            <br>
-                            <p class="card-text">Dueño:</p>
-                            <br>
-                            <p class="card-text">Semana:</p> -->
-
+                            <h5 class="card-title">Eres: </h5>  
                             <div *ngIf="game" class="game">
                                 <div><span>Puntos: </span>{{game.points}}</div>
                                 <br>
@@ -172,8 +142,6 @@
                                 <br>
                                 <div><span>Semana: </span>{{game.rounds}}</div>
                             </div>
-
-
                             <button href="#" class="btn btn-success">Usar mascarilla</button>
                         </div>
                     </div>
@@ -183,14 +151,6 @@
                     <div class="card" style="width: 18rem;">
                         <div class="card-body">
                             <h5 class="card-title">Eres: , junto con: </h5>
-                            <!--<p class="card-text">Puntos:</p>
-                            <br>
-                            <p class="card-text">Lider:</p>
-                            <br>
-                            <p class="card-text">Dueño:</p>
-                            <br>
-                            <p class="card-text">Semana:</p>
-                            <br> -->
                             <div *ngIf="game" class="game">
                                 <div><span>Puntos: </span>{{game.points}}</div>
                                 <br>
@@ -212,14 +172,12 @@
                         </div>
                     </div>
                 </div>
-
                 <!-- / Collapsible element -->
 
-
                 <div class="col-md-4 col-sm-12">
-                    <input type="text" [(ngModel)]="playerData.gameId" placeholder="ID" class="form-control" name="seeDetails">
-                    <input type="text" [(ngModel)]="playerData.name" placeholder="Contraseña" class="form-control" name="seeDetails">
-                    <input type="text" [(ngModel)]="playerData.password" placeholder="NombreMio" class="form-control" name="seeDetails">
+                    <input type="text" [(ngModel)]="playerData.gameId" class="form-control" name="seeDetails" disabled>
+                    <input type="text" [(ngModel)]="playerData.owner" placeholder="owner" class="form-control" name="seeDetails">
+                    <input type="password" [(ngModel)]="playerData.password" class="form-control" name="seeDetails" disabled>
                         <button (click)="getRoundsByID()" >Detalles</button>
                 </div>
 
@@ -229,9 +187,9 @@
                 <div class="col-md-4 col-sm-12">
 
 
-                    <input type="text" [(ngModel)]="enterPlayerData.gameId" placeholder="ID" class="form-control" name="seePut" id="seePut">
+                    <input type="text" [(ngModel)]="enterPlayerData.gameId" placeholder="ID" class="form-control" name="seePut" id="seePut"disabled>
                     <input type="text" [(ngModel)]="enterPlayerData.name" placeholder="NombreMio" class="form-control" name="namePut" id="namePut">
-                    <input type="text" [(ngModel)]="enterPlayerData.password" placeholder="Contraseña" class="form-control" name="passPut" id="passPut">
+                    <input type="password" [(ngModel)]="enterPlayerData.password" placeholder="Contraseña" class="form-control" name="passPut" id="passPut"disabled>
                         <button (click)="enterPlayer()" >PUTPUTPUT</button>
                 </div>
 
@@ -240,10 +198,10 @@
                 <br>
 
                 <div class="col-md-4 col-sm-12">
-                    <input type="text" [(ngModel)]="startGame.gameId" placeholder="ID" class="form-control" name="seePut" id="seePut">
+                    <input type="text" [(ngModel)]="startGame.gameId" placeholder="ID" class="form-control" name="seePut" id="seePut" disabled>
                     <input type="text" [(ngModel)]="startGame.name" placeholder="NombreDueño" class="form-control" name="namePut" id="namePut">
-                    <input type="text" [(ngModel)]="startGame.password" placeholder="Contraseña" class="form-control" name="passPut" id="passPut">
-                    <input (click)="gameStart()" type="submit" class="form-control" name="Start" value="Iniciar partida">
+                    <input type="password" [(ngModel)]="startGame.password" placeholder="Contraseña" class="form-control" name="passPut" id="passPut" disabled>
+                    <input (click)="gameStart()" type="submit" class="form-control bg-success text-light" name="Start" value="Iniciar partida">
                 </div>
 
                 <br>
@@ -251,9 +209,9 @@
                 <br>
 
                 <div class="col-md-4 col-sm-12">
-                    <input type="text" [(ngModel)]="groupPro.gameId" placeholder="ID" class="form-control" name="a" id="a">
+                    <input type="text" [(ngModel)]="groupPro.gameId" placeholder="ID" class="form-control" name="a" id="a" disabled>
                     <input type="text" [(ngModel)]="groupPro.name" placeholder="NombreDueño" class="form-control" name="b" id="b">
-                    <input type="text" [(ngModel)]="groupPro.password" placeholder="Contraseña" class="form-control" name="c" id="c">
+                    <input type="password" [(ngModel)]="groupPro.password" placeholder="Contraseña" class="form-control" name="c" id="c" disabled>
 
                     <input type="text" [(ngModel)]="forPartici.player1" class="form-control" name="forPa" id="forPa">
                     <input type="text" [(ngModel)]="forPartici.player2" class="form-control" name="forPa2" id="forPa2">
@@ -265,24 +223,22 @@
                 <br>
 
                 <div class="col-md-4 col-sm-12">
-
-
-                    <input type="text" [(ngModel)]="go.gameId" class="form-control" name="1" id="1">
+                    <input type="text" [(ngModel)]="go.gameId" class="form-control" name="1" id="1" disabled>
                     <input type="text" [(ngModel)]="go.name" class="form-control" name="2" id="2">
-                    <input type="text" [(ngModel)]="go.password" class="form-control" name="3" id="3">
-                
-                        <button (click)="startRound()" >PSYCHO PSYCHO</button>
-                
+                    <input type="password" [(ngModel)]="go.password" class="form-control" name="3" id="3" disabled>
+                    <button (click)="startRound()" >PSYCHO PSYCHO</button>
                 </div>
-                
-
-                
             </div>
 
+                <div class="row">
+                    <div class="d-flex justify-content-center mt-5">
+                        <input type="submit" class="form-control bg-primary text-light" (click)="onSelect()" name="join" value="Volver a MENU">
+                    </div>
+                </div>
+            
         </div>
     </div>
 </section>
-
 
 <!---->
 <ng-template #content let-modal>
@@ -297,17 +253,17 @@
         <div class="form-group">
           <label for="dateOfBirth">Id</label>
           <div class="input-group">
-            <input id="gameId" class="form-control" type="text" [(ngModel)]="playerData.gameId" name="gameId" >
+            <input id="gameId" class="form-control" type="text" [(ngModel)]="playerData.gameId" name="gameId" disabled>
           </div>
 
           <label for="dateOfBirth">Nombre</label>
           <div class="input-group">
-            <input id="name" class="form-control" type="text" [(ngModel)]="playerData.name" name="name" >
+            <input id="name" class="form-control" type="text" [(ngModel)]="playerData.name" name="name" disabled>
           </div>
 
           <label for="dateOfBirth">Contraseña</label>
           <div class="input-group">
-            <input id="password" class="form-control" [(ngModel)]="playerData.password" name="password" >
+            <input id="password" class="form-control" [(ngModel)]="playerData.password" name="password" disabled>
           </div>
 
           <div *ngIf="game" class="game">
@@ -320,6 +276,9 @@
             <div><span>Round: </span>{{game.rounds}}</div>
             <div><span>Estatus: </span>{{game.status}}</div>
 
+            <div class="col-md-4 col-sm-12">
+                <input type="submit" class="form-control bg-success text-light" (click)="onSelect(); modal.dismiss('Cross click')" name="join" value="Unirse partida">
+            </div>
             <!-- <select formControlName="rounds" [value]='game.rounds.id'>
                 <option *ngFor="let n of game" value={{n.id}}>
                   {{n.id}}

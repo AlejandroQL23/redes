@@ -43,17 +43,20 @@
 <div class="text-center">
     <h1 class="display-4">contagiaDOS</h1>
     <p>El juego en el que la estrategia puede salvarte o matarte</p>
+
+
+    <button class="dropdown-header" (click)="onSelect()">Link 2</button> 
 </div>
 
 
 <!-- CONTACT -->
-<section id="contact">
+<section id="contact" [hidden]="IsHidden">
     <div class="container">
         <div class="row">
 
             <div class="col-md-6 col-sm-12">
                 <div class="col-md-4 col-sm-12">
-                    <input (click)="refresh()" type="submit" class="form-control" name="createNew"
+                    <input (click)="refresh()" type="submit"  class="form-control" name="createNew"
                         value="Refrescar">
                 </div>
                 <form id="contact-form" role="form" action="" method="post">
@@ -104,7 +107,7 @@
                             <td>{{ s.name }}</td>
 
                             <td>
-                                <a (click)="open(content)"> Unirse </a>
+                                <a (click)="open(content, s.gameId)"> Unirse </a>
 
 
                             </td>
@@ -119,6 +122,167 @@
     </div>
 
 </section>
+
+<!---->
+
+<section id="game">
+    <div class="container">
+        <div class="row">
+
+
+            <div class="col-md-6 col-sm-12">
+                <!-- Collapse buttons -->
+                <div>
+                    <button class="btn btn-secondary" type="button" data-toggle="collapse"
+                        data-target="#collapseExample" (click)="isCollapsed = !isCollapsed"
+                        [attr.aria-expanded]="!isCollapsed" aria-controls="collapseExample">
+                        NombreIngresadoC:
+                    </button>
+                    <button class="btn btn-secondary" type="button" data-toggle="collapse"
+                        data-target="#collapseExample2" (click)="isCollapsed2 = !isCollapsed2"
+                        [attr.aria-expanded]="!isCollapsed2" aria-controls="collapseExample2">
+                        NombreIngresadoP: 
+                    </button>
+
+
+                    <div class="col-md-4 col-sm-12">
+                        <input type="submit" class="form-control" name="Start" value="Iniciar partida">
+                    </div>
+                </div>
+                <!-- / Collapse buttons -->
+                <!-- Collapsible element -->
+                <div class="collapse" id="collapseExample" [ngbCollapse]="isCollapsed">
+                    <div class="card" style="width: 18rem;">
+                        <div class="card-body">
+                            <h5 class="card-title">Eres: </h5>
+                            <!--<p class="card-text">Puntos:</p>
+                            <br>
+                            <p class="card-text">Lider:</p>
+                            <br>
+                            <p class="card-text">Dueño:</p>
+                            <br>
+                            <p class="card-text">Semana:</p> -->
+
+                            <div *ngIf="game" class="game">
+                                <div><span>Puntos: </span>{{game.points}}</div>
+                                <br>
+                                <div><span>Lider: </span>{{game.status}}</div>
+                                <br>
+                                <div><span>Dueño: </span>{{game.owner}}</div>
+                                <br>
+                                <div><span>Semana: </span>{{game.rounds}}</div>
+                            </div>
+
+
+                            <button href="#" class="btn btn-success">Usar mascarilla</button>
+                        </div>
+                    </div>
+                </div>
+                <!---->
+                <div class="collapse" id="collapseExample2" [ngbCollapse]="isCollapsed2">
+                    <div class="card" style="width: 18rem;">
+                        <div class="card-body">
+                            <h5 class="card-title">Eres: , junto con: </h5>
+                            <!--<p class="card-text">Puntos:</p>
+                            <br>
+                            <p class="card-text">Lider:</p>
+                            <br>
+                            <p class="card-text">Dueño:</p>
+                            <br>
+                            <p class="card-text">Semana:</p>
+                            <br> -->
+                            <div *ngIf="game" class="game">
+                                <div><span>Puntos: </span>{{game.points}}</div>
+                                <br>
+                                <div><span>Lider: </span>{{game.status}}</div>
+                                <br>
+                                <div><span>Dueño: </span>{{game.owner}}</div>
+                                <br>
+                                <div><span>Semana: </span>{{game.rounds}}</div>
+                            </div>
+                            <p class="card-text">Elige las personas que saldrán:</p>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="" id="flexCheckIndeterminate">
+                                <label class="form-check-label" for="flexCheckIndeterminate">
+                                    Nombres
+                                </label>
+                            </div>
+                            <button href="#" class="btn btn-success">Usar mascarilla</button>
+                            <button href="#" class="btn btn-danger">No usar mascarilla</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- / Collapsible element -->
+
+
+                <div class="col-md-4 col-sm-12">
+                    <input type="text" [(ngModel)]="playerData.gameId" placeholder="ID" class="form-control" name="seeDetails">
+                    <input type="text" [(ngModel)]="playerData.name" placeholder="Contraseña" class="form-control" name="seeDetails">
+                    <input type="text" [(ngModel)]="playerData.password" placeholder="NombreMio" class="form-control" name="seeDetails">
+                        <button (click)="getRoundsByID()" >Detalles</button>
+                </div>
+
+                <br>
+                <br>
+                <br>
+                <div class="col-md-4 col-sm-12">
+
+
+                    <input type="text" [(ngModel)]="enterPlayerData.gameId" placeholder="ID" class="form-control" name="seePut" id="seePut">
+                    <input type="text" [(ngModel)]="enterPlayerData.name" placeholder="NombreMio" class="form-control" name="namePut" id="namePut">
+                    <input type="text" [(ngModel)]="enterPlayerData.password" placeholder="Contraseña" class="form-control" name="passPut" id="passPut">
+                        <button (click)="enterPlayer()" >PUTPUTPUT</button>
+                </div>
+
+                <br>
+                <br>
+                <br>
+
+                <div class="col-md-4 col-sm-12">
+                    <input type="text" [(ngModel)]="startGame.gameId" placeholder="ID" class="form-control" name="seePut" id="seePut">
+                    <input type="text" [(ngModel)]="startGame.name" placeholder="NombreDueño" class="form-control" name="namePut" id="namePut">
+                    <input type="text" [(ngModel)]="startGame.password" placeholder="Contraseña" class="form-control" name="passPut" id="passPut">
+                    <input (click)="gameStart()" type="submit" class="form-control" name="Start" value="Iniciar partida">
+                </div>
+
+                <br>
+                <br>
+                <br>
+
+                <div class="col-md-4 col-sm-12">
+                    <input type="text" [(ngModel)]="groupPro.gameId" placeholder="ID" class="form-control" name="a" id="a">
+                    <input type="text" [(ngModel)]="groupPro.name" placeholder="NombreDueño" class="form-control" name="b" id="b">
+                    <input type="text" [(ngModel)]="groupPro.password" placeholder="Contraseña" class="form-control" name="c" id="c">
+
+                    <input type="text" [(ngModel)]="forPartici.player1" class="form-control" name="forPa" id="forPa">
+                    <input type="text" [(ngModel)]="forPartici.player2" class="form-control" name="forPa2" id="forPa2">
+                    <button (click)="setGroup()" >MATENSE</button>
+                </div>
+
+                <br>
+                <br>
+                <br>
+
+                <div class="col-md-4 col-sm-12">
+
+
+                    <input type="text" [(ngModel)]="go.gameId" class="form-control" name="1" id="1">
+                    <input type="text" [(ngModel)]="go.name" class="form-control" name="2" id="2">
+                    <input type="text" [(ngModel)]="go.password" class="form-control" name="3" id="3">
+                
+                        <button (click)="startRound()" >PSYCHO PSYCHO</button>
+                
+                </div>
+                
+
+                
+            </div>
+
+        </div>
+    </div>
+</section>
+
 
 <!---->
 <ng-template #content let-modal>
@@ -148,13 +312,25 @@
 
           <div *ngIf="game" class="game">
             
+            <div><span>Id: </span>{{game.gameId}}</div>
             <div><span>Name: </span>{{game.name}}</div>
             <div><span>Dueño: </span>{{game.owner}}</div>
             <div><span>Password: </span>{{game.password}}</div>
-            <div><span>Jugadores: </span>{{game.players}}</div>
+            <div><span>Jugadores: </span >{{game.players}}</div>
             <div><span>Round: </span>{{game.rounds}}</div>
             <div><span>Estatus: </span>{{game.status}}</div>
+
+            <!-- <select formControlName="rounds" [value]='game.rounds.id'>
+                <option *ngFor="let n of game" value={{n.id}}>
+                  {{n.id}}
+                </option>
+              </select> 
+            
+            Object.values(game.rounds)
+            -->
         </div>
+
+
 
         </div>
       </form>

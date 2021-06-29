@@ -73,6 +73,7 @@ export class RestService {
            'name' : playerData.name,
            'password' : playerData.password
         })
+        
       };
     return this.http.get(this.getEndpoint() + 'game/'+gameId, httpOptions);
     }
@@ -133,6 +134,18 @@ export class RestService {
         'psycho' : Ispsycho
       };
       return this.http.post<any>(this.getEndpoint() + 'game/'+go.gameId+'/go',JSON.stringify(body), httpOptions);
+    }
+
+
+    getGame(gameId): Observable<any> {
+      return this.http.get(this.getEndpoint() + 'game/'+gameId, httpOptions).pipe(
+        map(this.extractData),
+      );
+    }
+
+    private extractData(res: Response) {
+      let body = res;
+      return body || {};
     }
     
 

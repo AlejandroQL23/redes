@@ -11,12 +11,26 @@ import { ModalDismissReasons, NgbModal, NgbModalRef } from '@ng-bootstrap/ng-boo
 })
 export class MainComponent implements OnInit {
 
+ 
+  @Input() playerData = {gameId:'', password:'', name:''};
+  @Input() enterPlayerData = {gameId:'', name:'',password:''};
+  @Input() go = {gameId:'', name:'',password:''};
+  @Input() startGame = {gameId:'', name:'',password:''};
+  @Input() groupPro = {gameId:'', name:'',password:''};
+  @Input() forPartici = {player1:'',player2:''};
+  closeResult: string;
+
+  IsHidden= false;
+
+  onSelect(){
+  this.IsHidden= !this.IsHidden;
+  }
+
   title = 'appBootstrap';
   games:any = [];
   game : any;
   @Input() gameData = {ownerGame:'', password:'', name:''};
-  @Input() playerData = {gameId:'', password:'', name:''};
-  closeResult: string;
+
 
   constructor(public rest:RestService, private route: ActivatedRoute, private router: Router,  private modalService: NgbModal) { }
 
@@ -27,13 +41,15 @@ export class MainComponent implements OnInit {
     this.getRoundsByID();
   }
 
-  open(content) {
+  open(content, id) {
     this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
       this.closeResult = `Closed with: ${result}`;
     }, (reason) => {
       this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
     });
+    this.getGame(id,this.playerData);
   }
+
 
   private getDismissReason(reason: any): string {
     if (reason === ModalDismissReasons.ESC) {
@@ -54,6 +70,15 @@ export class MainComponent implements OnInit {
     });
   }
 
+  getGame(id,game){
+    this.rest.getGame(id).subscribe((data: {gameId, name, owner, password, players, psychos, status, rounds:{id,leader,group}}) => {
+      game.gameId =   data.gameId;
+      game.name =   data.name;
+      game.owner =   data.owner;
+      game.password =   data.password;
+    });
+  }
+
 createGame() {
   /*this.rest.createGame(this.gameData.name, this.gameData).subscribe((result) => {
     console.log("si pasa por el post");
@@ -66,12 +91,50 @@ createGame() {
 getRoundsByID() {
   this.rest.getRoundListByID(this.playerData,this.playerData.gameId).subscribe((data: {}) => {
     console.log(data);
-    
     this.game = data;
   });
 }  
 
 refresh(): void { window.location.reload(); }
+
+///////////////////////////////////////////////////////////
+public isCollapsed = true;
+  public isCollapsed2 = true;
+
+  enterPlayer() {
+    this.rest.enterPlayer(this.enterPlayerData).subscribe((result) => {
+      console.log("si pasa por el enterPlayer");
+    }, (err) => {
+      console.log(err);
+    });
+  }
+
+  gameStart() {
+    this.rest.gameStart(this.startGame).subscribe((result) => {
+     // this.router.navigate(['']);
+      console.log("si pasa por el gameStart");
+    }, (err) => {
+      console.log(err);
+    });
+  }
+
+  setGroup() {
+    this.rest.setGroup(this.groupPro,this.forPartici).subscribe((result) => {
+     // this.router.navigate(['']);
+      console.log("si pasa por el setGroup");
+    }, (err) => {
+      console.log(err);
+    });
+  }
+
+  startRound() {
+    this.rest.startRound(false, this.go).subscribe((result) => {
+     // this.router.navigate(['']);
+      console.log("si pasa por el startRound");
+    }, (err) => {
+      console.log(err);
+    });
+  }
 
 
 }

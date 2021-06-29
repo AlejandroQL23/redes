@@ -55,14 +55,7 @@ export class GameComponent implements OnInit {
     });
   }
 
-  setGroup() {
-    this.rest.setGroup(this.groupPro,this.forPartici).subscribe((result) => {
-     // this.router.navigate(['']);
-      console.log("si pasa por el setGroup");
-    }, (err) => {
-      console.log(err);
-    });
-  }
+
 
   startRound() {
     this.rest.startRound(false, this.go).subscribe((result) => {

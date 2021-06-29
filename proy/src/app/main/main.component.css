@@ -1,6 +1,11 @@
-input::placeholder {
+#contact input::placeholder {
     opacity: 1 !important;
     color: #FFF !important;
+  } 
+
+  #game input::placeholder {
+    opacity: 1 !important;
+    color: rgb(0, 0, 0) !important;
   } 
   
   .show .modal-dialog {

@@ -107,7 +107,8 @@ export class RestService {
     }
     
     //POST1
-    setGroup(groupPro:any,forPartici:any): Observable<any>{
+    setGroup(groupPro:any,forPartici:any, registerForm: any): Observable<any>{
+      console.log(registerForm);
       const httpOptions = {
         headers : new HttpHeaders({
           'Content-Type': 'application/json',

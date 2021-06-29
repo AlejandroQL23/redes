@@ -188,9 +188,9 @@
 
 
                     <input type="text" [(ngModel)]="enterPlayerData.gameId" placeholder="ID" class="form-control" name="seePut" id="seePut"disabled>
-                    <input type="text" [(ngModel)]="enterPlayerData.name" placeholder="NombreMio" class="form-control" name="namePut" id="namePut">
+                    <input type="text" placeholder="Ingrese su nombre" class="form-control" name="namePut" id="namePut">
                     <input type="password" [(ngModel)]="enterPlayerData.password" placeholder="Contraseña" class="form-control" name="passPut" id="passPut"disabled>
-                        <button (click)="enterPlayer()" >PUTPUTPUT</button>
+                        <button (click)="enterPlayer()" >Ingresar</button>
                 </div>
 
                 <br>
@@ -199,7 +199,7 @@
 
                 <div class="col-md-4 col-sm-12">
                     <input type="text" [(ngModel)]="startGame.gameId" placeholder="ID" class="form-control" name="seePut" id="seePut" disabled>
-                    <input type="text" [(ngModel)]="startGame.name" placeholder="NombreDueño" class="form-control" name="namePut" id="namePut">
+                    <input type="text" [(ngModel)]="startGame.name" placeholder="NombreDueño" class="form-control" name="namePut" id="namePut" disabled>
                     <input type="password" [(ngModel)]="startGame.password" placeholder="Contraseña" class="form-control" name="passPut" id="passPut" disabled>
                     <input (click)="gameStart()" type="submit" class="form-control bg-success text-light" name="Start" value="Iniciar partida">
                 </div>
@@ -210,12 +210,38 @@
 
                 <div class="col-md-4 col-sm-12">
                     <input type="text" [(ngModel)]="groupPro.gameId" placeholder="ID" class="form-control" name="a" id="a" disabled>
-                    <input type="text" [(ngModel)]="groupPro.name" placeholder="NombreDueño" class="form-control" name="b" id="b">
+                    <input type="text"  placeholder="Nombre del lider" class="form-control" name="b" id="b">
                     <input type="password" [(ngModel)]="groupPro.password" placeholder="Contraseña" class="form-control" name="c" id="c" disabled>
 
-                    <input type="text" [(ngModel)]="forPartici.player1" class="form-control" name="forPa" id="forPa">
-                    <input type="text" [(ngModel)]="forPartici.player2" class="form-control" name="forPa2" id="forPa2">
-                    <button (click)="setGroup()" >MATENSE</button>
+                    <!-- <input type="text" [(ngModel)]="forPartici.player1" class="form-control" name="forPa" id="forPa">
+                    <input type="text" [(ngModel)]="forPartici.player2" class="form-control" name="forPa2" id="forPa2"> -->
+                    <form (submit)="submit()" [formGroup]="registerForm">
+                
+                
+                        <div class="form-group">
+                            <a class="btn btn-primary" (click)="agregarTelefono()">Saldrán:</a>
+                        </div>
+                    
+                        <div formArrayName="telefonos" *ngFor="let telefono of telefonos.controls; let i = index">
+                            <div [formGroupName]="i">
+                                <div class="form-group row">
+  
+                                    <div class="col-md-7">
+                                        <input type="text" placeholder="Enviar a:" [attr.id]="'telefono' + i" class="form-control" formControlName="telefono">
+                                    </div>
+                                    <div class="col-md-2">
+                                        <button class="btn btn-danger" (click)="removerTelefono(i)">X</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    
+                    
+                        <button type="submit" class="btn btn-success" [disabled]="registerForm.invalid">Enviar</button>
+                    
+                    
+                    </form>
+                    <button (click)="setGroup()" >Enviar</button>
                 </div>
 
                 <br>
@@ -224,9 +250,9 @@
 
                 <div class="col-md-4 col-sm-12">
                     <input type="text" [(ngModel)]="go.gameId" class="form-control" name="1" id="1" disabled>
-                    <input type="text" [(ngModel)]="go.name" class="form-control" name="2" id="2">
+                    <input type="text"  placeholder="regresa:" class="form-control" name="2" id="2">
                     <input type="password" [(ngModel)]="go.password" class="form-control" name="3" id="3" disabled>
-                    <button (click)="startRound()" >PSYCHO PSYCHO</button>
+                    <button (click)="startRound()" >Regresar</button>
                 </div>
             </div>
 

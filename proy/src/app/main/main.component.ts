@@ -2,6 +2,7 @@ import { Component, OnInit, Input} from '@angular/core';
 import { RestService } from '../rest.service'; 
 import { ActivatedRoute, Router } from '@angular/router';
 import { ModalDismissReasons, NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
+import { FormGroup, FormControl, Validators, FormArray, FormBuilder } from '@angular/forms';
 import Swal from 'sweetalert2';
 
 
@@ -34,12 +35,45 @@ export class MainComponent implements OnInit {
   
   }
   
-  constructor(public rest:RestService, private route: ActivatedRoute, private router: Router,  private modalService: NgbModal) { }
+  constructor(private formBuilder: FormBuilder, public rest:RestService, private route: ActivatedRoute,
+     private router: Router,  private modalService: NgbModal) { }
 
   ngOnInit() {
     this.getGames();
     this.getRoundsByID();
   }
+
+  //////
+  get telefonos(){
+    return this.registerForm.get('telefonos') as FormArray;
+  }
+
+  registerForm = this.formBuilder.group({
+    telefonos: this.formBuilder.array([])
+  });
+
+
+
+  agregarTelefono(){
+    const telefonoFormGroup  = this.formBuilder.group({
+      telefono: ''
+    });
+    this.telefonos.push(telefonoFormGroup);
+  }
+
+  removerTelefono(indice: number) {
+    this.telefonos.removeAt(indice);
+  }
+
+  submit() {
+
+    if (!this.registerForm.valid) {
+      alert('Alguna regla de validación no se está cumpliendo');
+      return;
+    }
+    console.log(this.registerForm.value);
+  }
+  /////
 
   open(content, id) {
     this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
@@ -83,11 +117,11 @@ export class MainComponent implements OnInit {
   }
 
   createGame(name,pass) {
-    /*this.rest.createGame(this.gameData.name, this.gameData).subscribe((result) => {
+    this.rest.createGame(this.gameData.name, this.gameData).subscribe((result) => {
       console.log("si pasa por el post");
     }, (err) => {
       console.log(err);
-    });*/
+    });
     this.loading(name, pass);
   }
 
@@ -153,7 +187,7 @@ export class MainComponent implements OnInit {
   }
 
   setGroup() {
-    this.rest.setGroup(this.groupPro,this.forPartici).subscribe((result) => {
+    this.rest.setGroup(this.groupPro,this.forPartici, this.registerForm.value).subscribe((result) => {
      // this.router.navigate(['']);
       console.log("si pasa por el setGroup");
     }, (err) => {

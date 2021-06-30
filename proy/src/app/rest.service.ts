@@ -54,12 +54,10 @@ export class RestService {
       const httpOptions = {
         headers : new HttpHeaders({
           'Content-Type': 'application/json',
-          'name':ownerName,
+          'name':ownerName
         })
-    
-        
       };
-      //return this.http.post<any>(this.getEndpoint() + 'game/create', JSON.stringify(game), httpOptions);
+      
       return this.http.post<any>(this.getEndpoint() + 'game/create', JSON.stringify(game), httpOptions);
     }
     
@@ -75,6 +73,7 @@ export class RestService {
         })
         
       };
+      
     return this.http.get(this.getEndpoint() + 'game/'+gameId, httpOptions);
     }
 
@@ -117,7 +116,8 @@ export class RestService {
         })
       };
       const body={
-        'group' : [forPartici.player1,forPartici.player2]
+        'group' : registerForm
+        
       };
       return this.http.post<any>(this.getEndpoint() + 'game/'+groupPro.gameId+'/group',JSON.stringify(body), httpOptions);
     }

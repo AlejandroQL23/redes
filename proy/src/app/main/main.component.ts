@@ -15,6 +15,7 @@ export class MainComponent implements OnInit {
 
   title = 'appBootstrap';
   games:any = [];
+  telArray:any = [];
   game : any;
 
   @Input() playerData = {gameId:'',  owner:'', password:''};
@@ -28,6 +29,8 @@ export class MainComponent implements OnInit {
 
   IsHidden= false;
   IsHidden2= true;
+
+  
 
   onSelect(){
   this.IsHidden= !this.IsHidden;
@@ -48,10 +51,12 @@ export class MainComponent implements OnInit {
     return this.registerForm.get('telefonos') as FormArray;
   }
 
+
+
   registerForm = this.formBuilder.group({
     telefonos: this.formBuilder.array([])
   });
-
+  
 
 
   agregarTelefono(){
@@ -59,6 +64,7 @@ export class MainComponent implements OnInit {
       telefono: ''
     });
     this.telefonos.push(telefonoFormGroup);
+
   }
 
   removerTelefono(indice: number) {
@@ -71,8 +77,18 @@ export class MainComponent implements OnInit {
       alert('Alguna regla de validación no se está cumpliendo');
       return;
     }
-    console.log(this.registerForm.value);
+ 
+    this.llena();
   }
+
+  llena(){
+    for (var _i = 0; _i < (this.registerForm.get('telefonos').value).length; _i++) {
+      this.telArray[_i] = ((this.registerForm.get(['telefonos',_i])).get(['telefono'])).value
+    }
+
+    
+  }
+
   /////
 
   open(content, id) {
@@ -83,7 +99,7 @@ export class MainComponent implements OnInit {
     });
     this.getGame(id,this.playerData);
     this.getGame(id,this.enterPlayerData);
-    this.getGame(id,this.startGame);
+    this.getGame2(id,this.startGame);
     this.getGame(id,this.groupPro);
     this.getGame(id,this.go);
   }
@@ -116,8 +132,16 @@ export class MainComponent implements OnInit {
     });
   }
 
+  getGame2(id,game){
+    this.rest.getGame(id).subscribe((data: {gameId, name, owner, password, players, psychos, status, rounds:{id,leader,group}}) => {
+      game.gameId =   data.gameId;
+      game.name =   data.owner;
+      game.password =   data.password;
+    });
+  }
+
   createGame(name,pass) {
-    this.rest.createGame(this.gameData.name, this.gameData).subscribe((result) => {
+    this.rest.createGame(this.gameData.ownerGame, this.gameData).subscribe((result) => {
       console.log("si pasa por el post");
     }, (err) => {
       console.log(err);
@@ -187,7 +211,7 @@ export class MainComponent implements OnInit {
   }
 
   setGroup() {
-    this.rest.setGroup(this.groupPro,this.forPartici, this.registerForm.value).subscribe((result) => {
+    this.rest.setGroup(this.groupPro,this.forPartici, this.telArray).subscribe((result) => {
      // this.router.navigate(['']);
       console.log("si pasa por el setGroup");
     }, (err) => {

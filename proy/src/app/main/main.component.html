@@ -174,7 +174,7 @@
                 </div>
                 <!-- / Collapsible element -->
 
-                <div class="col-md-4 col-sm-12">
+                <div class="col-md-4 col-sm-12" hidden>
                     <input type="text" [(ngModel)]="playerData.gameId" class="form-control" name="seeDetails" disabled>
                     <input type="text" [(ngModel)]="playerData.owner" placeholder="owner" class="form-control" name="seeDetails">
                     <input type="password" [(ngModel)]="playerData.password" class="form-control" name="seeDetails" disabled>
@@ -185,12 +185,11 @@
                 <br>
                 <br>
                 <div class="col-md-4 col-sm-12">
-
-
-                    <input type="text" [(ngModel)]="enterPlayerData.gameId" placeholder="ID" class="form-control" name="seePut" id="seePut"disabled>
-                    <input type="text" placeholder="Ingrese su nombre" class="form-control" name="namePut" id="namePut">
-                    <input type="password" [(ngModel)]="enterPlayerData.password" placeholder="Contraseña" class="form-control" name="passPut" id="passPut"disabled>
-                        <button (click)="enterPlayer()" >Ingresar</button>
+                    <label>Ingrese participante</label>
+                    <input type="text" [(ngModel)]="enterPlayerData.gameId" placeholder="ID" class="form-control" name="seePut" id="seePut"disabled hidden>
+                    <input type="text" [(ngModel)]="enterPlayerData.name" placeholder="Ingrese su nombre" class="form-control" name="namePut" id="namePut">
+                    <input type="password" [(ngModel)]="enterPlayerData.password" placeholder="Contraseña" class="form-control" name="passPut" id="passPut"disabled hidden>
+                        <button class="btn btn-primary" (click)="enterPlayer()" >Ingresar</button>
                 </div>
 
                 <br>
@@ -198,9 +197,10 @@
                 <br>
 
                 <div class="col-md-4 col-sm-12">
-                    <input type="text" [(ngModel)]="startGame.gameId" placeholder="ID" class="form-control" name="seePut" id="seePut" disabled>
-                    <input type="text" [(ngModel)]="startGame.name" placeholder="NombreDueño" class="form-control" name="namePut" id="namePut" disabled>
-                    <input type="password" [(ngModel)]="startGame.password" placeholder="Contraseña" class="form-control" name="passPut" id="passPut" disabled>
+                    <label>Iniciar partida</label>
+                    <input type="text" [(ngModel)]="startGame.gameId" placeholder="ID" class="form-control" name="seePut" id="seePut" disabled hidden>
+                    <input type="text" [(ngModel)]="startGame.name" placeholder="NombreDueño" class="form-control" name="e" id="e" disabled>
+                    <input type="password" [(ngModel)]="startGame.password" placeholder="Contraseña" class="form-control" name="passPut" id="passPut" disabled hidden>
                     <input (click)="gameStart()" type="submit" class="form-control bg-success text-light" name="Start" value="Iniciar partida">
                 </div>
 
@@ -209,9 +209,10 @@
                 <br>
 
                 <div class="col-md-4 col-sm-12">
-                    <input type="text" [(ngModel)]="groupPro.gameId" placeholder="ID" class="form-control" name="a" id="a" disabled>
-                    <input type="text"  placeholder="Nombre del lider" class="form-control" name="b" id="b">
-                    <input type="password" [(ngModel)]="groupPro.password" placeholder="Contraseña" class="form-control" name="c" id="c" disabled>
+                    <label>Ingrese lider</label>
+                    <input type="text" [(ngModel)]="groupPro.gameId" placeholder="ID" class="form-control" name="a" id="a" disabled hidden>
+                    <input type="text" [(ngModel)]="groupPro.name" placeholder="Nombre del lider" class="form-control" name="b" id="b">
+                    <input type="password" [(ngModel)]="groupPro.password" placeholder="Contraseña" class="form-control" name="c" id="c" disabled hidden>
 
                     <!-- <input type="text" [(ngModel)]="forPartici.player1" class="form-control" name="forPa" id="forPa">
                     <input type="text" [(ngModel)]="forPartici.player2" class="form-control" name="forPa2" id="forPa2"> -->
@@ -237,11 +238,11 @@
                         </div>
                     
                     
-                        <button type="submit" class="btn btn-success" [disabled]="registerForm.invalid">Enviar</button>
+                        <button type="submit" class="btn btn-success" [disabled]="registerForm.invalid" >Confirmar</button>
                     
                     
                     </form>
-                    <button (click)="setGroup()" >Enviar</button>
+                    <button (click)="setGroup()" class="btn btn-primary" >Enviar</button>
                 </div>
 
                 <br>
@@ -249,10 +250,11 @@
                 <br>
 
                 <div class="col-md-4 col-sm-12">
-                    <input type="text" [(ngModel)]="go.gameId" class="form-control" name="1" id="1" disabled>
-                    <input type="text"  placeholder="regresa:" class="form-control" name="2" id="2">
-                    <input type="password" [(ngModel)]="go.password" class="form-control" name="3" id="3" disabled>
-                    <button (click)="startRound()" >Regresar</button>
+                    <label>Llamar de regreso</label>
+                    <input type="text" [(ngModel)]="go.gameId" class="form-control" name="1" id="1" disabled hidden>
+                    <input type="text" [(ngModel)]="go.name" placeholder="regresa:" class="form-control" name="2" id="2">
+                    <input type="password" [(ngModel)]="go.password" class="form-control" name="3" id="3" disabled hidden>
+                    <button class="btn btn-primary" (click)="startRound()" >Regresar</button>
                 </div>
             </div>
 
@@ -299,7 +301,6 @@
             <div><span>Dueño: </span>{{game.owner}}</div>
             <div><span>Password: </span>{{game.password}}</div>
             <div><span>Jugadores: </span >{{game.players}}</div>
-            <div><span>Round: </span>{{game.rounds}}</div>
             <div><span>Estatus: </span>{{game.status}}</div>
 
             <div class="col-md-4 col-sm-12">

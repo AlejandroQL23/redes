@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "UR3HjLmt+JrXF4yNhw4HK8sZ8QoaT9mxFLj0nk0SE4jZq5LtyfObAzk+yumZRRzCnKoEsawYoVIwvIF8WamPFg==",
+  "dgSpecHash": "Hlal0tsfb62GcJWrbNRC//t2SUz1wt+Yn4mCABiwozGIixldLYjoVXIJB1Yzto0FeFLPVdLZadSk8yvHfebLww==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Vampirin\\source\\repos\\contagiaDOSAPI\\contagiaDOSAPI\\contagiaDOSAPI.csproj",
+  "projectFilePath": "C:\\Users\\Vampirin\\OneDrive\\Escritorio\\redes\\contagiaDOSAPI\\contagiaDOSAPI\\contagiaDOSAPI.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Vampirin\\.nuget\\packages\\microsoft.aspnet.webapi.client\\5.2.7\\microsoft.aspnet.webapi.client.5.2.7.nupkg.sha512",
     "C:\\Users\\Vampirin\\.nuget\\packages\\microsoft.aspnetcore.html.abstractions\\2.2.0\\microsoft.aspnetcore.html.abstractions.2.2.0.nupkg.sha512",

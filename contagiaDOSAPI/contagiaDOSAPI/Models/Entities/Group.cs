@@ -7,19 +7,12 @@ using System.Collections.Generic;
 
 namespace contagiaDOSAPI.Models.Entities
 {
-    public partial class Player
+    public partial class Group
     {
-        public Player()
-        {
-            Group = new HashSet<Group>();
-        }
-
         public int Id { get; set; }
+        public int? PlayerId { get; set; }
         public string Name { get; set; }
-        public int? IdGame { get; set; }
-        public bool? Psycho { get; set; }
 
-        public virtual Game IdGameNavigation { get; set; }
-        public virtual ICollection<Group> Group { get; set; }
+        public virtual Player Player { get; set; }
     }
 }

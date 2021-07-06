@@ -25,13 +25,12 @@ namespace contagiaDOSAPI.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Player>>> GetPlayers()
         {
-            return await _context.Players.Select(playerItem => new Player()
+            return await _context.Player.Select(playerItem => new Player()
             {
                 Id = playerItem.Id,
                 Name = playerItem.Name,
-                Leader = playerItem.Leader,
-                Rol = playerItem.Rol,
-                Infected = playerItem.Infected
+                IdGame = playerItem.IdGame,
+                Psycho = playerItem.Psycho
 
             }).ToListAsync();
         }
@@ -41,7 +40,7 @@ namespace contagiaDOSAPI.Controllers
         [HttpGet("{id}")]
         public async Task<ActionResult<Player>> GetPlayer(int id)
         {
-            var players = await _context.Players.FindAsync(id);
+            var players = await _context.Player.FindAsync(id);
 
             if (players == null)
             {
@@ -84,7 +83,7 @@ namespace contagiaDOSAPI.Controllers
         [HttpPost]
         public async Task<ActionResult<Player>> PostPlayer(Player players)
         {
-            _context.Players.Add(players);
+            _context.Player.Add(players);
             await _context.SaveChangesAsync();
 
             return CreatedAtAction("GetPlayers", new { id = players.Id }, players);
@@ -94,13 +93,13 @@ namespace contagiaDOSAPI.Controllers
         [HttpDelete("{id}")]
         public async Task<ActionResult<Player>> DeletePlayer(int id)
         {
-            var player = await _context.Players.FindAsync(id);
+            var player = await _context.Player.FindAsync(id);
             if (player == null)
             {
                 return NotFound();
             }
 
-            _context.Players.Remove(player);
+            _context.Player.Remove(player);
             await _context.SaveChangesAsync();
 
             return player;
@@ -108,7 +107,7 @@ namespace contagiaDOSAPI.Controllers
 
         private bool PlayerExists(int id)
         {
-            return _context.Players.Any(e => e.Id == id);
+            return _context.Player.Any(e => e.Id == id);
         }
     }
 }

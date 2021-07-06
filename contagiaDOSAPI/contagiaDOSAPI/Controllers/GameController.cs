@@ -26,21 +26,23 @@ namespace contagiaDOSAPI.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Game>>> GetGames()
         {
-            return await _context.Games.Select(gameItem => new Game()
+            return await _context.Game.Select(gameItem => new Game()
             {
-                Id = gameItem.Id,
+                GameId = gameItem.GameId,
                 Name = gameItem.Name,
+                Owner = gameItem.Owner,
                 Password = gameItem.Password,
-                State = gameItem.State
+                Status = gameItem.Status
             }).ToListAsync();
         }
+
 
         [Route("[action]")]
         // GET: api/Game/5
         [HttpGet("{id}")]
         public async Task<ActionResult<Game>> GetGame(int id)
         {
-            var game = await _context.Games.FindAsync(id);
+            var game = await _context.Game.FindAsync(id);
 
             if (game == null)
             {
@@ -63,7 +65,7 @@ namespace contagiaDOSAPI.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!GameExists(games.Id))
+                if (!GameExists(games.GameId))
                 {
                     return NotFound();
                 }
@@ -80,23 +82,23 @@ namespace contagiaDOSAPI.Controllers
         [HttpPost]
         public async Task<ActionResult<Game>> PostGame(Game games)
         {
-            _context.Games.Add(games);
+            _context.Game.Add(games);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetGames", new { id = games.Id }, games);
+            return CreatedAtAction("GetGames", new { id = games.GameId }, games);
         }
 
         // DELETE: api/Game/5
         [HttpDelete("{id}")]
         public async Task<ActionResult<Game>> DeleteGame(int id)
         {
-            var game = await _context.Games.FindAsync(id);
+            var game = await _context.Game.FindAsync(id);
             if (game == null)
             {
                 return NotFound();
             }
 
-            _context.Games.Remove(game);
+            _context.Game.Remove(game);
             await _context.SaveChangesAsync();
 
             return game;
@@ -104,7 +106,7 @@ namespace contagiaDOSAPI.Controllers
 
         private bool GameExists(int id)
         {
-            return _context.Games.Any(e => e.Id == id);
+            return _context.Game.Any(e => e.GameId == id);
         }
     }
 }

@@ -1,9 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
 
-#nullable disable
+// Code scaffolded by EF Core assumes nullable reference types (NRTs) are not used or disabled.
+// If you have enabled NRTs for your project, then un-comment the following line:
+// #nullable disable
 
 namespace contagiaDOSAPI.Models.Entities
 {
@@ -18,62 +19,94 @@ namespace contagiaDOSAPI.Models.Entities
         {
         }
 
-        public virtual DbSet<Game> Games { get; set; }
-        public virtual DbSet<Player> Players { get; set; }
+        public virtual DbSet<Game> Game { get; set; }
+        public virtual DbSet<Group> Group { get; set; }
+        public virtual DbSet<Player> Player { get; set; }
+        public virtual DbSet<Round> Round { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             if (!optionsBuilder.IsConfigured)
             {
-#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
+#warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
                 optionsBuilder.UseSqlServer("Server=163.178.107.10;Initial Catalog=contagiaDOSredes;User ID=laboratorios;Password=KmZpo.2796");
             }
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.HasAnnotation("Relational:Collation", "Modern_Spanish_CI_AS");
-
             modelBuilder.Entity<Game>(entity =>
             {
-                entity.ToTable("Game");
+                entity.Property(e => e.GameId).HasColumnName("gameId");
 
+                entity.Property(e => e.Name)
+                    .HasColumnName("name")
+                    .HasMaxLength(20);
+
+                entity.Property(e => e.Owner)
+                    .HasColumnName("owner")
+                    .HasMaxLength(20);
+
+                entity.Property(e => e.Password)
+                    .HasColumnName("password")
+                    .HasMaxLength(20);
+
+                entity.Property(e => e.Status)
+                    .HasColumnName("status")
+                    .HasMaxLength(20);
+            });
+
+            modelBuilder.Entity<Group>(entity =>
+            {
                 entity.Property(e => e.Id).HasColumnName("id");
 
                 entity.Property(e => e.Name)
-                    .HasMaxLength(20)
-                    .HasColumnName("name");
+                    .HasColumnName("name")
+                    .HasMaxLength(20);
 
-                entity.Property(e => e.Password)
-                    .HasMaxLength(20)
-                    .HasColumnName("password");
+                entity.Property(e => e.PlayerId).HasColumnName("player_id");
 
-                entity.Property(e => e.State)
-                    .HasMaxLength(20)
-                    .HasColumnName("state");
+                entity.HasOne(d => d.Player)
+                    .WithMany(p => p.Group)
+                    .HasForeignKey(d => d.PlayerId)
+                    .HasConstraintName("FK_Group_Player");
             });
 
             modelBuilder.Entity<Player>(entity =>
             {
-                entity.ToTable("Player");
-
                 entity.Property(e => e.Id).HasColumnName("id");
 
-                entity.Property(e => e.Infected)
-                    .HasMaxLength(1)
-                    .HasColumnName("infected");
-
-                entity.Property(e => e.Leader)
-                    .HasMaxLength(1)
-                    .HasColumnName("leader");
+                entity.Property(e => e.IdGame).HasColumnName("id_game");
 
                 entity.Property(e => e.Name)
-                    .HasMaxLength(20)
-                    .HasColumnName("name");
+                    .HasColumnName("name")
+                    .HasMaxLength(20);
 
-                entity.Property(e => e.Rol)
-                    .HasMaxLength(20)
-                    .HasColumnName("rol");
+                entity.Property(e => e.Psycho).HasColumnName("psycho");
+
+                entity.HasOne(d => d.IdGameNavigation)
+                    .WithMany(p => p.Player)
+                    .HasForeignKey(d => d.IdGame)
+                    .HasConstraintName("FK_Player_Game");
+            });
+
+            modelBuilder.Entity<Round>(entity =>
+            {
+                entity.Property(e => e.Id)
+                    .HasColumnName("id")
+                    .ValueGeneratedOnAdd();
+
+                entity.Property(e => e.Leader)
+                    .HasColumnName("leader")
+                    .HasMaxLength(20);
+
+                entity.Property(e => e.Psychowin).HasColumnName("psychowin");
+
+                entity.HasOne(d => d.IdNavigation)
+                    .WithOne(p => p.Round)
+                    .HasForeignKey<Round>(d => d.Id)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_Round_Game");
             });
 
             OnModelCreatingPartial(modelBuilder);

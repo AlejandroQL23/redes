@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Vampirin\\source\\repos\\contagiaDOSAPI\\contagiaDOSAPI\\contagiaDOSAPI.csproj": {}
+    "C:\\Users\\Vampirin\\OneDrive\\Escritorio\\redes\\contagiaDOSAPI\\contagiaDOSAPI\\contagiaDOSAPI.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Vampirin\\source\\repos\\contagiaDOSAPI\\contagiaDOSAPI\\contagiaDOSAPI.csproj": {
+    "C:\\Users\\Vampirin\\OneDrive\\Escritorio\\redes\\contagiaDOSAPI\\contagiaDOSAPI\\contagiaDOSAPI.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Vampirin\\source\\repos\\contagiaDOSAPI\\contagiaDOSAPI\\contagiaDOSAPI.csproj",
+        "projectUniqueName": "C:\\Users\\Vampirin\\OneDrive\\Escritorio\\redes\\contagiaDOSAPI\\contagiaDOSAPI\\contagiaDOSAPI.csproj",
         "projectName": "contagiaDOSAPI",
-        "projectPath": "C:\\Users\\Vampirin\\source\\repos\\contagiaDOSAPI\\contagiaDOSAPI\\contagiaDOSAPI.csproj",
+        "projectPath": "C:\\Users\\Vampirin\\OneDrive\\Escritorio\\redes\\contagiaDOSAPI\\contagiaDOSAPI\\contagiaDOSAPI.csproj",
         "packagesPath": "C:\\Users\\Vampirin\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Vampirin\\source\\repos\\contagiaDOSAPI\\contagiaDOSAPI\\obj\\",
+        "outputPath": "C:\\Users\\Vampirin\\OneDrive\\Escritorio\\redes\\contagiaDOSAPI\\contagiaDOSAPI\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Vampirin\\AppData\\Roaming\\NuGet\\NuGet.Config",

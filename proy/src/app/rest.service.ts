@@ -18,6 +18,8 @@ export class RestService {
 
   constructor(private http: HttpClient) { }
 
+      //------------Server-----------------
+
   getCustomServerAddress() : string{
     return localStorage.getItem('customServerAddress');
     }
@@ -37,6 +39,14 @@ export class RestService {
     }
     return `http://${endpoint}/`;
     }
+
+
+    setCustomServerAddress(address:string) : void{
+      address = address
+      localStorage.setItem('customServerAddress', address);
+      localStorage.setItem('useDefaultServer', 'true');
+      }
+
     //------------SET UP-----------------
     //GET
     getGameList(): Observable<any>{

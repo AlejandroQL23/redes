@@ -96,7 +96,12 @@
           background: rgb(95, 89, 89);
       }
   
-  
+        
+      input {
+        height: 50px;
+        background: rgb(95, 89, 89);
+    }
+
   
   
   #contact-form input[type='submit'] {
@@ -185,4 +190,18 @@
       background: #252525;
       border-color: transparent;
     }
+
+    /* ------ */
+
+    table {
+      width: 100%;
+      display:block;
+  }
+
+  tbody {
+      height: 500px;
+      display: inline-block;
+      width: 100%;
+      overflow: auto;
+  }
   

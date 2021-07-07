@@ -88,12 +88,12 @@ export class MainComponent implements OnInit {
   }
 
 
-  //  enterServer() {
-  //   if (!this.useDefaultServer){
-  //     this.rest.setCustomServerAddress(this.form.get('serverAddres').value);
-  //   }
-  //   this.rest.setUseDefaultServer(this.useDefaultServer);
-  //  }
+    // enterServer() {
+    //  if (!this.useDefaultServer){
+    //    this.rest.setCustomServerAddress(this.form.get('serverAddres').value);
+    //  }
+    //  this.rest.setUseDefaultServer(this.useDefaultServer);
+    // }
  
 
   open(content, id) {
@@ -222,6 +222,7 @@ export class MainComponent implements OnInit {
     }, (err) => {
       console.log(err);
     });
+    this.telArray = [];
   }
 
 

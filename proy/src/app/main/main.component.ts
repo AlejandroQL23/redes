@@ -85,11 +85,16 @@ export class MainComponent implements OnInit {
     for (var _i = 0; _i < (this.registerForm.get('telefonos').value).length; _i++) {
       this.telArray[_i] = ((this.registerForm.get(['telefonos',_i])).get(['telefono'])).value
     }
-
-    
   }
 
-  /////
+
+  //  enterServer() {
+  //   if (!this.useDefaultServer){
+  //     this.rest.setCustomServerAddress(this.form.get('serverAddres').value);
+  //   }
+  //   this.rest.setUseDefaultServer(this.useDefaultServer);
+  //  }
+ 
 
   open(content, id) {
     this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
@@ -219,8 +224,18 @@ export class MainComponent implements OnInit {
     });
   }
 
+
   startRound() {
     this.rest.startRound(false, this.go).subscribe((result) => {
+     // this.router.navigate(['']);
+      console.log("si pasa por el startRound");
+    }, (err) => {
+      console.log(err);
+    });
+  }
+
+  startRound2() {
+    this.rest.startRound(true, this.go).subscribe((result) => {
      // this.router.navigate(['']);
       console.log("si pasa por el startRound");
     }, (err) => {

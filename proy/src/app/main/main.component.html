@@ -55,6 +55,18 @@
         <div class="row">
 
             <div class="col-md-6 col-sm-12">
+
+                <form id="server-form" role="form" action="" method="post">
+                    <div class="col-md-12 col-sm-12">
+                        <input type="text" [(ngModel)]="gameData.ownerGame" class="form-control"
+                            placeholder="Ingrese direccion del servidor" name="name" required="">
+                    </div>
+
+                    <div class="col-md-4 col-sm-12">
+                        <input  type="submit" class="form-control" name="createNew"
+                            value="Acceder a servidor">
+                    </div>
+                </form>
                 
                 <form id="contact-form" role="form" action="" method="post">
                     <div class="section-title">
@@ -237,8 +249,9 @@
                             </div>
                         </div>
                     
-                    
+                        
                         <button type="submit" class="btn btn-success" [disabled]="registerForm.invalid" >Confirmar</button>
+
                     
                     
                     </form>
@@ -254,7 +267,8 @@
                     <input type="text" [(ngModel)]="go.gameId" class="form-control" name="1" id="1" disabled hidden>
                     <input type="text" [(ngModel)]="go.name" placeholder="regresa:" class="form-control" name="2" id="2">
                     <input type="password" [(ngModel)]="go.password" class="form-control" name="3" id="3" disabled hidden>
-                    <button class="btn btn-primary" (click)="startRound()" >Regresar</button>
+                    <button  class="btn btn-danger" (click)="startRound2()">Regresar y no usar mascarilla</button>
+                    <button class="btn btn-primary" (click)="startRound()" >Regresar y usar mascarilla</button> <!--Este era el de regresar-->
                 </div>
             </div>
 

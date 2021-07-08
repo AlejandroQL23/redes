@@ -16,7 +16,7 @@ namespace contagiaDOSAPI.Models.Entities
 
         public int Id { get; set; }
         public string Name { get; set; }
-        public int? IdGame { get; set; }
+        public int IdGame { get; set; }
         public bool? Psycho { get; set; }
 
         public virtual Game IdGameNavigation { get; set; }

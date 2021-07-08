@@ -27,6 +27,10 @@ namespace contagiaDOSAPI
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddCors(allowsites => {
+                allowsites.AddPolicy("AllowOrigin", options => options.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod());
+            });
+
             services.AddControllers().AddNewtonsoftJson(options =>
             options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
 
@@ -46,6 +50,10 @@ namespace contagiaDOSAPI
             app.UseHttpsRedirection();
 
             app.UseRouting();
+
+
+            app.UseCors(options => options.AllowAnyOrigin());
+
 
             app.UseAuthorization();
 

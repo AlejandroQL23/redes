@@ -6,10 +6,12 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using contagiaDOSAPI.Models.Entities;
+using Microsoft.AspNetCore.Cors;
 
 namespace contagiaDOSAPI.Controllers
 {
-    [Route("api/[controller]")]
+    [EnableCors]
+    [Route("[controller]")]
     [ApiController]
     public class GroupController : ControllerBase
     {

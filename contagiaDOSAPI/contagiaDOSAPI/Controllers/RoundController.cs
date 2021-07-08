@@ -6,10 +6,12 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using contagiaDOSAPI.Models.Entities;
+using Microsoft.AspNetCore.Cors;
 
 namespace contagiaDOSAPI.Controllers
 {
-    [Route("api/[controller]")]
+    [EnableCors]
+    [Route("[controller]")]
     [ApiController]
     public class RoundController : ControllerBase
     {
@@ -20,7 +22,7 @@ namespace contagiaDOSAPI.Controllers
             _context = new contagiaDOSredesContext();
         }
 
-        // GET: api/Round/GetRounds
+        // GET: Round/GetRounds
         [Route("[action]")]
         [HttpGet("{id}")]
         public async Task<ActionResult<IEnumerable<Round>>> GetRounds()
@@ -33,7 +35,7 @@ namespace contagiaDOSAPI.Controllers
             }).ToListAsync();
         }
 
-        // GET: api/Round/5
+        // GET: Round/5
         [Route("[action]")]
         [HttpGet("{id}")]
         public async Task<ActionResult<Round>> GetRound(int id)
@@ -48,7 +50,7 @@ namespace contagiaDOSAPI.Controllers
             return round;
         }
 
-        // PUT: api/Round/1 --->Also you have to put the id
+        // PUT: Round/1 --->Also you have to put the id
         [Route("[action]")]
         [HttpPut]
         public async Task<IActionResult> PutRound(Round round)
@@ -73,7 +75,7 @@ namespace contagiaDOSAPI.Controllers
             return NoContent();
         }
 
-        // POST: api/Round/PostRound
+        // POST: Round/PostRound
         [Route("[action]")]
         [HttpPost]
         public async Task<ActionResult<Game>> PostRound(Round round)
@@ -84,7 +86,7 @@ namespace contagiaDOSAPI.Controllers
             return CreatedAtAction("GetRounds", new { id = round.Id }, round);
         }
 
-        // DELETE: api/Round/5
+        // DELETE: Round/5
         [HttpDelete("{id}")]
         public async Task<ActionResult<Round>> DeleteRound(int id)
         {

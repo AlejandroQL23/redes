@@ -6,10 +6,11 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using contagiaDOSAPI.Models.Entities;
+using Microsoft.AspNetCore.Cors;
 
 namespace contagiaDOSAPI.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("[controller]")]
     [ApiController]
     public class PlayerController : ControllerBase
     {
@@ -20,11 +21,15 @@ namespace contagiaDOSAPI.Controllers
             _context = new contagiaDOSredesContext();
         }
 
-        // GET: api/Player/GetPlayers
+        // GET: Player/GetPlayers
         [Route("[action]")]
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Player>>> GetPlayers()
         {
+
+            PostRed(1);
+            leader(1);
+
             return await _context.Player.Select(playerItem => new Player()
             {
                 Id = playerItem.Id,
@@ -36,7 +41,7 @@ namespace contagiaDOSAPI.Controllers
         }
 
         [Route("[action]")]
-        // GET: api/Player/1
+        // GET: Player/1
         [HttpGet("{id}")]
         public async Task<ActionResult<Player>> GetPlayer(int id)
         {
@@ -51,7 +56,7 @@ namespace contagiaDOSAPI.Controllers
         }
 
 
-        // PUT: api/Player/1 --->Also you have to put the id 
+        // PUT: Player/1 --->Also you have to put the id 
         [Route("[action]")]
         [HttpPut]
         public async Task<IActionResult> PutPlayer(Player players)
@@ -78,7 +83,7 @@ namespace contagiaDOSAPI.Controllers
             return NoContent();
         }
 
-        // POST: api/Player/PostPlayer
+        // POST: Player/PostPlayer
         [Route("[action]")]
         [HttpPost]
         public async Task<ActionResult<Player>> PostPlayer(Player players)
@@ -89,7 +94,7 @@ namespace contagiaDOSAPI.Controllers
             return CreatedAtAction("GetPlayers", new { id = players.Id }, players);
         }
 
-        // DELETE: api/Player/5
+        // DELETE: Player/5
         [HttpDelete("{id}")]
         public async Task<ActionResult<Player>> DeletePlayer(int id)
         {
@@ -109,5 +114,122 @@ namespace contagiaDOSAPI.Controllers
         {
             return _context.Player.Any(e => e.Id == id);
         }
+
+        //----------------------------------------------------------------------------
+        // POST: Player/PostPlayer/3 //PRUEBA, PUEDE ESTAR MAL
+        public ActionResult PostRed(int gameId)
+        {
+            int[] array = (from player in _context.Player where player.IdGame == gameId select player.Id ).ToArray();
+            int id = array.Length;
+
+
+            string resultToReturn = "";
+            if (id < 5 || id > 10)
+            {
+                resultToReturn = "Número incorrecto de jugadores, solo se admiten de 5 a 10 y usted ingresó: " + id;
+            }
+            else
+            if (id == 5)
+            {
+                resultToReturn = logic(id, 3, 2, array);
+            }
+            else if (id == 6)
+            {
+                resultToReturn = logic(id, 4, 2, array);
+            }
+            else if (id == 7)
+            {
+                resultToReturn = logic(id, 4, 3, array);
+            }
+            else if (id == 8)
+            {
+                resultToReturn = logic(id, 5, 3, array);
+            }
+            else if (id == 9)
+            {
+                resultToReturn = logic(id, 6, 3, array);
+            }
+            else if (id == 10)
+            {
+                resultToReturn = logic(id, 6, 4, array);
+            }
+
+            return Ok(resultToReturn);
+        }
+
+        public string logic(int id, int e, int p, int[] array)
+        {
+            int ejemplares = e;
+            int psicopatas = p;
+            string returnV = "";
+            int[] arrayGenerico = array;
+            
+
+            Random r = new Random();
+            for (int i = 1; i <= id; i++)
+            {
+                int x = r.Next(0, 2);
+                Console.WriteLine(x);
+                if (x == 0)
+                {
+                    if (ejemplares > 0)
+                    {
+                        string res = arrayGenerico[i - 1] + " ES EJEMPLAR\n";
+
+                        var result = (from pl in _context.Player where pl.Id == arrayGenerico[i - 1] select pl).SingleOrDefault();
+                        result.Psycho = false;
+                        _context.SaveChanges();
+
+                        returnV = string.Concat(returnV, res);
+                        ejemplares--;
+                    }
+                    else
+                    {
+                        var result = (from pl in _context.Player where pl.Id == arrayGenerico[i - 1] select pl).SingleOrDefault();
+                        result.Psycho = true;
+                        _context.SaveChanges();
+
+                        string res = arrayGenerico[i - 1] + " ES PSICOPATA\n";
+                        returnV = string.Concat(returnV, res);
+                        psicopatas--;
+                    }
+
+                }
+                else
+                {
+                    if (psicopatas > 0)
+                    {
+                        var result = (from pl in _context.Player where pl.Id == arrayGenerico[i - 1] select pl).SingleOrDefault();
+                        result.Psycho = true;
+                        _context.SaveChanges();
+                        string res = arrayGenerico[i - 1] + " ES PSICOPATA\n";
+                        returnV = string.Concat(returnV, res);
+                        psicopatas--;
+                    }
+                    else
+                    {
+                        var result = (from pl in _context.Player where pl.Id == arrayGenerico[i - 1] select pl).SingleOrDefault();
+                        result.Psycho = false;
+                        _context.SaveChanges();
+                        string res = arrayGenerico[i - 1] + " ES EJEMPLAR\n";
+                        returnV = string.Concat(returnV, res);
+                        ejemplares--;
+                    }
+
+                }
+
+            }
+            return returnV;
+        }
+
+
+        public void leader(int gameId) {
+            Player[] array = (from player in _context.Player where player.IdGame == gameId select player).ToArray();
+            Random r = new Random();
+            int x = r.Next(0, array.Length);
+            Console.WriteLine(array[x].Name);
+        }
+
+
     }
 }

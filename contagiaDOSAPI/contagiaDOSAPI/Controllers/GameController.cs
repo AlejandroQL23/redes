@@ -14,7 +14,8 @@ namespace contagiaDOSAPI.Controllers
 
     [Route("api/[controller]")]
     [ApiController]
-    [EnableCors("AllowOrigin")]
+    [AllowAnonymous]
+    //[EnableCors("AllowOrigin")]
     public class GameController : ControllerBase
     {
         private readonly contagiaDOSredesContext _context;
@@ -26,6 +27,7 @@ namespace contagiaDOSAPI.Controllers
 
 
         // GET: api/Game/GetGames
+        [EnableCors("GetAllPolicy")]
         [Route("[action]")]
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Game>>> GetGames()
@@ -40,9 +42,9 @@ namespace contagiaDOSAPI.Controllers
             }).ToListAsync();
         }
 
-
-        [Route("[action]")]
         // GET: api/Game/5
+        [EnableCors("GetAllPolicy")]
+        [Route("[action]")]
         [HttpGet("{id}")]
         public async Task<ActionResult<Game>> GetGame(int id)
         {
@@ -57,6 +59,7 @@ namespace contagiaDOSAPI.Controllers
         }
 
         // PUT: api/Game/1 --->Also you have to put the id 
+        [EnableCors("GetAllPolicy")]
         [Route("[action]")]
         [HttpPut]
         public async Task<IActionResult> PutGame(Game games)
@@ -82,6 +85,7 @@ namespace contagiaDOSAPI.Controllers
         }
 
         // POST: api/Game/PostGame
+        [EnableCors("GetAllPolicy")]
         [Route("[action]")]
         [HttpPost]
         public async Task<ActionResult<Game>> PostGame(Game games)
@@ -93,6 +97,7 @@ namespace contagiaDOSAPI.Controllers
         }
 
         // DELETE: api/Game/5
+        [EnableCors("GetAllPolicy")]
         [HttpDelete("{id}")]
         public async Task<ActionResult<Game>> DeleteGame(int id)
         {

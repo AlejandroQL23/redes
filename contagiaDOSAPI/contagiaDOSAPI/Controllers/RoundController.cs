@@ -7,12 +7,14 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using contagiaDOSAPI.Models.Entities;
 using Microsoft.AspNetCore.Cors;
+using Microsoft.AspNetCore.Authorization;
 
 namespace contagiaDOSAPI.Controllers
 {
-    [EnableCors]
+    //[EnableCors]
     [Route("[controller]")]
     [ApiController]
+    [AllowAnonymous]
     public class RoundController : ControllerBase
     {
         private readonly contagiaDOSredesContext _context;
@@ -23,6 +25,7 @@ namespace contagiaDOSAPI.Controllers
         }
 
         // GET: Round/GetRounds
+        [EnableCors("GetAllPolicy")]
         [Route("[action]")]
         [HttpGet("{id}")]
         public async Task<ActionResult<IEnumerable<Round>>> GetRounds()
@@ -36,6 +39,7 @@ namespace contagiaDOSAPI.Controllers
         }
 
         // GET: Round/5
+        [EnableCors("GetAllPolicy")]
         [Route("[action]")]
         [HttpGet("{id}")]
         public async Task<ActionResult<Round>> GetRound(int id)
@@ -51,6 +55,7 @@ namespace contagiaDOSAPI.Controllers
         }
 
         // PUT: Round/1 --->Also you have to put the id
+        [EnableCors("GetAllPolicy")]
         [Route("[action]")]
         [HttpPut]
         public async Task<IActionResult> PutRound(Round round)
@@ -76,6 +81,7 @@ namespace contagiaDOSAPI.Controllers
         }
 
         // POST: Round/PostRound
+        [EnableCors("GetAllPolicy")]
         [Route("[action]")]
         [HttpPost]
         public async Task<ActionResult<Game>> PostRound(Round round)
@@ -87,6 +93,7 @@ namespace contagiaDOSAPI.Controllers
         }
 
         // DELETE: Round/5
+        [EnableCors("GetAllPolicy")]
         [HttpDelete("{id}")]
         public async Task<ActionResult<Round>> DeleteRound(int id)
         {

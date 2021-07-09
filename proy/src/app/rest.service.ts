@@ -56,7 +56,7 @@ export class RestService {
 
       })
     };
-    return this.http.get(this.getEndpoint() + 'game/', httpOptions);
+    return this.http.get(this.getEndpoint() + 'api/Game/GetGames', httpOptions);
   }
 
   //POST
@@ -149,7 +149,7 @@ export class RestService {
 
 
   getGame(gameId): Observable<any> {
-    return this.http.get(this.getEndpoint() + 'game/' + gameId, httpOptions).pipe(
+    return this.http.get(this.getEndpoint() + 'api/Game/' + gameId, httpOptions).pipe(
       map(this.extractData),
     );
   }

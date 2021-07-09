@@ -7,11 +7,13 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using contagiaDOSAPI.Models.Entities;
 using Microsoft.AspNetCore.Cors;
+using Microsoft.AspNetCore.Authorization;
 
 namespace contagiaDOSAPI.Controllers
 {
     [Route("[controller]")]
     [ApiController]
+    [AllowAnonymous]
     public class PlayerController : ControllerBase
     {
         private readonly contagiaDOSredesContext _context;
@@ -22,6 +24,7 @@ namespace contagiaDOSAPI.Controllers
         }
 
         // GET: Player/GetPlayers
+        [EnableCors("GetAllPolicy")]
         [Route("[action]")]
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Player>>> GetPlayers()
@@ -40,6 +43,7 @@ namespace contagiaDOSAPI.Controllers
             }).ToListAsync();
         }
 
+        [EnableCors("GetAllPolicy")]
         [Route("[action]")]
         // GET: Player/1
         [HttpGet("{id}")]
@@ -57,6 +61,7 @@ namespace contagiaDOSAPI.Controllers
 
 
         // PUT: Player/1 --->Also you have to put the id 
+        [EnableCors("GetAllPolicy")]
         [Route("[action]")]
         [HttpPut]
         public async Task<IActionResult> PutPlayer(Player players)
@@ -84,6 +89,7 @@ namespace contagiaDOSAPI.Controllers
         }
 
         // POST: Player/PostPlayer
+        [EnableCors("GetAllPolicy")]
         [Route("[action]")]
         [HttpPost]
         public async Task<ActionResult<Player>> PostPlayer(Player players)
@@ -95,6 +101,7 @@ namespace contagiaDOSAPI.Controllers
         }
 
         // DELETE: Player/5
+        [EnableCors("GetAllPolicy")]
         [HttpDelete("{id}")]
         public async Task<ActionResult<Player>> DeletePlayer(int id)
         {
@@ -115,6 +122,8 @@ namespace contagiaDOSAPI.Controllers
             return _context.Player.Any(e => e.Id == id);
         }
 
+
+        [EnableCors("GetAllPolicy")]
         //----------------------------------------------------------------------------
         // POST: Player/PostPlayer/3 //PRUEBA, PUEDE ESTAR MAL
         public ActionResult PostRed(int gameId)
@@ -157,6 +166,7 @@ namespace contagiaDOSAPI.Controllers
             return Ok(resultToReturn);
         }
 
+        [EnableCors("GetAllPolicy")]
         public string logic(int id, int e, int p, int[] array)
         {
             int ejemplares = e;
@@ -222,7 +232,7 @@ namespace contagiaDOSAPI.Controllers
             return returnV;
         }
 
-
+        [EnableCors("GetAllPolicy")]
         public void leader(int gameId) {
             Player[] array = (from player in _context.Player where player.IdGame == gameId select player).ToArray();
             Random r = new Random();

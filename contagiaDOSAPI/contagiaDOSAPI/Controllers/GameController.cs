@@ -12,13 +12,14 @@ using Microsoft.AspNetCore.Authorization;
 namespace contagiaDOSAPI.Controllers
 {
 
-    [Route("api/[controller]")]
+    [Route("[controller]")]
     [ApiController]
     [AllowAnonymous]
     //[EnableCors("AllowOrigin")]
     public class GameController : ControllerBase
     {
         private readonly contagiaDOSredesContext _context;
+        PlayerController playerController;
 
         public GameController(contagiaDOSredesContext context)
         {
@@ -26,7 +27,7 @@ namespace contagiaDOSAPI.Controllers
         }
 
 
-        // GET: api/Game/GetGames
+        // GET: Game/GetGames
         [EnableCors("GetAllPolicy")]
         [Route("[action]")]
         [HttpGet]
@@ -42,7 +43,7 @@ namespace contagiaDOSAPI.Controllers
             }).ToListAsync();
         }
 
-        // GET: api/Game/5
+        // GET: Game/5
         [EnableCors("GetAllPolicy")]
         [Route("[action]")]
         [HttpGet("{id}")]
@@ -58,7 +59,7 @@ namespace contagiaDOSAPI.Controllers
             return game;
         }
 
-        // PUT: api/Game/1 --->Also you have to put the id 
+        // PUT: Game/1 --->Also you have to put the id 
         [EnableCors("GetAllPolicy")]
         [Route("[action]")]
         [HttpPut]
@@ -84,19 +85,30 @@ namespace contagiaDOSAPI.Controllers
             return NoContent();
         }
 
-        // POST: api/Game/PostGame
+        // POST: Game/PostGame
         [EnableCors("GetAllPolicy")]
         [Route("[action]")]
         [HttpPost]
         public async Task<ActionResult<Game>> PostGame(Game games)
         {
+            games.Status = "Lobby";
             _context.Game.Add(games);
             await _context.SaveChangesAsync();
+
+            Player p = new Player
+            {
+                Id = 0,
+                Name = games.Owner,
+                GameId = games.GameId,
+                Psycho = false
+            };
+            playerController = new PlayerController(_context);
+            playerController.PostPlayer(p);
 
             return CreatedAtAction("GetGames", new { id = games.GameId }, games);
         }
 
-        // DELETE: api/Game/5
+        // DELETE: Game/5
         [EnableCors("GetAllPolicy")]
         [HttpDelete("{id}")]
         public async Task<ActionResult<Game>> DeleteGame(int id)
@@ -117,5 +129,16 @@ namespace contagiaDOSAPI.Controllers
         {
             return _context.Game.Any(e => e.GameId == id);
         }
+
+        [EnableCors("GetAllPolicy")]
+        [Route("[action]")]
+        [HttpHead("{gameId}")]
+        public async Task<ActionResult<Game>> start(int gameId)
+        {
+            playerController = new PlayerController(_context);
+            playerController.PostRed(gameId);
+            return Ok();
+        }
+
     }
 }

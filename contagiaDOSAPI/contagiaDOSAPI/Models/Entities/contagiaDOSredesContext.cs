@@ -76,7 +76,7 @@ namespace contagiaDOSAPI.Models.Entities
             {
                 entity.Property(e => e.Id).HasColumnName("id");
 
-                entity.Property(e => e.IdGame).HasColumnName("id_game");
+                entity.Property(e => e.GameId).HasColumnName("gameId");
 
                 entity.Property(e => e.Name)
                     .HasColumnName("name")
@@ -84,9 +84,9 @@ namespace contagiaDOSAPI.Models.Entities
 
                 entity.Property(e => e.Psycho).HasColumnName("psycho");
 
-                entity.HasOne(d => d.IdGameNavigation)
+                entity.HasOne(d => d.Game)
                     .WithMany(p => p.Player)
-                    .HasForeignKey(d => d.IdGame)
+                    .HasForeignKey(d => d.GameId)
                     .HasConstraintName("FK_Player_Game");
             });
 

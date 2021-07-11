@@ -29,15 +29,13 @@ namespace contagiaDOSAPI.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Player>>> GetPlayers()
         {
-
-            PostRed(1);
             leader(1);
 
             return await _context.Player.Select(playerItem => new Player()
             {
                 Id = playerItem.Id,
                 Name = playerItem.Name,
-                IdGame = playerItem.IdGame,
+                GameId = playerItem.GameId,
                 Psycho = playerItem.Psycho
 
             }).ToListAsync();
@@ -94,6 +92,7 @@ namespace contagiaDOSAPI.Controllers
         [HttpPost]
         public async Task<ActionResult<Player>> PostPlayer(Player players)
         {
+            players.Psycho = false;
             _context.Player.Add(players);
             await _context.SaveChangesAsync();
 
@@ -128,7 +127,7 @@ namespace contagiaDOSAPI.Controllers
         // POST: Player/PostPlayer/3 //PRUEBA, PUEDE ESTAR MAL
         public ActionResult PostRed(int gameId)
         {
-            int[] array = (from player in _context.Player where player.IdGame == gameId select player.Id ).ToArray();
+            int[] array = (from player in _context.Player where player.GameId == gameId select player.Id ).ToArray();
             int id = array.Length;
 
 
@@ -234,7 +233,7 @@ namespace contagiaDOSAPI.Controllers
 
         [EnableCors("GetAllPolicy")]
         public void leader(int gameId) {
-            Player[] array = (from player in _context.Player where player.IdGame == gameId select player).ToArray();
+            Player[] array = (from player in _context.Player where player.GameId == gameId select player).ToArray();
             Random r = new Random();
             int x = r.Next(0, array.Length);
             Console.WriteLine(array[x].Name);

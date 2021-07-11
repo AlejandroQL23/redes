@@ -24,7 +24,7 @@ namespace contagiaDOSAPI.Controllers
             _context = new contagiaDOSredesContext();
         }
 
-        //GET: api/Group/GetGroups
+        //GET: Group/GetGroups
         [EnableCors("GetAllPolicy")]
         [Route("[action]")]
         [HttpGet]
@@ -38,7 +38,7 @@ namespace contagiaDOSAPI.Controllers
             }).ToListAsync();
         }
 
-        // GET: api/Group/5
+        // GET: Group/5
         [EnableCors("GetAllPolicy")]
         [Route("[action]")]
         [HttpGet("{id}")]
@@ -54,7 +54,7 @@ namespace contagiaDOSAPI.Controllers
             return group;
         }
 
-        // PUT: api/Group/1 --->Also you have to put the id 
+        // PUT: Group/1 --->Also you have to put the id 
         [EnableCors("GetAllPolicy")]
         [Route("[action]")]
         [HttpPut]
@@ -80,7 +80,7 @@ namespace contagiaDOSAPI.Controllers
             return NoContent();
         }
 
-        // POST: api/Group/PostGroup
+        // POST: Group/PostGroup
         [EnableCors("GetAllPolicy")]
         [Route("[action]")]
         [HttpPost]
@@ -92,7 +92,7 @@ namespace contagiaDOSAPI.Controllers
             return CreatedAtAction("GetGroups", new { id = groups.Id }, groups);
         }
 
-        // DELETE: api/Group/5
+        // DELETE: Group/5
         [EnableCors("GetAllPolicy")]
         [HttpDelete("{id}")]
         public async Task<ActionResult<Group>> DeleteGroup(int id)

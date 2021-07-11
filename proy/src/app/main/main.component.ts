@@ -1,5 +1,5 @@
-import { Component, OnInit, Input} from '@angular/core';
-import { RestService } from '../rest.service'; 
+import { Component, OnInit, Input } from '@angular/core';
+import { RestService } from '../rest.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ModalDismissReasons, NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { FormGroup, FormControl, Validators, FormArray, FormBuilder } from '@angular/forms';
@@ -14,32 +14,32 @@ import Swal from 'sweetalert2';
 export class MainComponent implements OnInit {
 
   title = 'appBootstrap';
-  games:any = [];
-  telArray:any = [];
-  game : any;
+  games: any = [];
+  telArray: any = [];
+  game: any;
 
-  @Input() playerData = {gameId:'',  owner:'', password:''};
-  @Input() enterPlayerData = {gameId:'', name:'',password:''};
-  @Input() go = {gameId:'', name:'',password:''};
-  @Input() startGame = {gameId:'', name:'',password:''};
-  @Input() groupPro = {gameId:'', name:'',password:''};
-  @Input() forPartici = {player1:'',player2:''};
-  @Input() gameData = {ownerGame:'', password:'', name:''};
+  @Input() playerData = { gameId: '', owner: '', password: '' };
+  @Input() enterPlayerData = { gameId: '', name: '', password: '' };
+  @Input() go = { gameId: '', name: '', password: '' };
+  @Input() startGame = { gameId: '', name: '', password: '' };
+  @Input() groupPro = { gameId: '', name: '', password: '' };
+  @Input() forPartici = { player1: '', player2: '' };
+  @Input() gameData = { owner: '', password: '', name: '' };
   closeResult: string;
 
-  IsHidden= false;
-  IsHidden2= true;
+  IsHidden = false;
+  IsHidden2 = true;
 
-  
 
-  onSelect(){
-  this.IsHidden= !this.IsHidden;
-  this.IsHidden2= !this.IsHidden2;
-  
+
+  onSelect() {
+    this.IsHidden = !this.IsHidden;
+    this.IsHidden2 = !this.IsHidden2;
+
   }
-  
-  constructor(private formBuilder: FormBuilder, public rest:RestService, private route: ActivatedRoute,
-     private router: Router,  private modalService: NgbModal) { }
+
+  constructor(private formBuilder: FormBuilder, public rest: RestService, private route: ActivatedRoute,
+    private router: Router, private modalService: NgbModal) { }
 
   ngOnInit() {
     this.getGames();
@@ -47,7 +47,7 @@ export class MainComponent implements OnInit {
   }
 
   //////
-  get telefonos(){
+  get telefonos() {
     return this.registerForm.get('telefonos') as FormArray;
   }
 
@@ -56,11 +56,11 @@ export class MainComponent implements OnInit {
   registerForm = this.formBuilder.group({
     telefonos: this.formBuilder.array([])
   });
-  
 
 
-  agregarTelefono(){
-    const telefonoFormGroup  = this.formBuilder.group({
+
+  agregarTelefono() {
+    const telefonoFormGroup = this.formBuilder.group({
       telefono: ''
     });
     this.telefonos.push(telefonoFormGroup);
@@ -77,36 +77,36 @@ export class MainComponent implements OnInit {
       alert('Alguna regla de validación no se está cumpliendo');
       return;
     }
- 
+
     this.llena();
   }
 
-  llena(){
+  llena() {
     for (var _i = 0; _i < (this.registerForm.get('telefonos').value).length; _i++) {
-      this.telArray[_i] = ((this.registerForm.get(['telefonos',_i])).get(['telefono'])).value
+      this.telArray[_i] = ((this.registerForm.get(['telefonos', _i])).get(['telefono'])).value
     }
   }
 
 
-    // enterServer() {
-    //  if (!this.useDefaultServer){
-    //    this.rest.setCustomServerAddress(this.form.get('serverAddres').value);
-    //  }
-    //  this.rest.setUseDefaultServer(this.useDefaultServer);
-    // }
- 
+  // enterServer() {
+  //  if (!this.useDefaultServer){
+  //    this.rest.setCustomServerAddress(this.form.get('serverAddres').value);
+  //  }
+  //  this.rest.setUseDefaultServer(this.useDefaultServer);
+  // }
+
 
   open(content, id) {
-    this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
+    this.modalService.open(content, { ariaLabelledBy: 'modal-basic-title' }).result.then((result) => {
       this.closeResult = `Closed with: ${result}`;
     }, (reason) => {
       this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
     });
-    this.getGame(id,this.playerData);
-    this.getGame(id,this.enterPlayerData);
-    this.getGame2(id,this.startGame);
-    this.getGame(id,this.groupPro);
-    this.getGame(id,this.go);
+    this.getGame(id, this.playerData);
+    this.getGame(id, this.enterPlayerData);
+    this.getGame2(id, this.startGame);
+    this.getGame(id, this.groupPro);
+    this.getGame(id, this.go);
   }
 
 
@@ -128,25 +128,25 @@ export class MainComponent implements OnInit {
     });
   }
 
-  getGame(id,game){
-    this.rest.getGame(id).subscribe((data: {gameId, name, owner, password, players, psychos, status, rounds:{id,leader,group}}) => {
-      game.gameId =   data.gameId;
-      game.name =   data.name;
-      game.owner =   data.owner;
-      game.password =   data.password;
+  getGame(id, game) {
+    this.rest.getGame(id).subscribe((data: { gameId, name, owner, password, players, psychos, status, rounds: { id, leader, group } }) => {
+      game.gameId = data.gameId;
+      game.name = data.name;
+      game.owner = data.owner;
+      game.password = data.password;
     });
   }
 
-  getGame2(id,game){
-    this.rest.getGame(id).subscribe((data: {gameId, name, owner, password, players, psychos, status, rounds:{id,leader,group}}) => {
-      game.gameId =   data.gameId;
-      game.name =   data.owner;
-      game.password =   data.password;
+  getGame2(id, game) {
+    this.rest.getGame(id).subscribe((data: { gameId, name, owner, password, players, psychos, status, rounds: { id, leader, group } }) => {
+      game.gameId = data.gameId;
+      game.name = data.owner;
+      game.password = data.password;
     });
   }
 
-  createGame(name,pass) {
-    this.rest.createGame(this.gameData.ownerGame, this.gameData).subscribe((result) => {
+  createGame(name, pass) {
+    this.rest.createGame(this.gameData.owner, this.gameData).subscribe((result) => {
       console.log("si pasa por el post");
     }, (err) => {
       console.log(err);
@@ -155,17 +155,17 @@ export class MainComponent implements OnInit {
   }
 
   getRoundsByID() {
-    this.rest.getRoundListByID(this.playerData,this.playerData.gameId).subscribe((data: {}) => {
+    this.rest.getRoundListByID(this.playerData, this.playerData.gameId).subscribe((data: {}) => {
       console.log(data);
       this.game = data;
     });
-  }  
+  }
 
   loading(name, pass) {
     let timerInterval
     Swal.fire({
       title: 'Credenciales!',
-      html: 'Nombre del servidor: '+ name +'<br> Contraseña: '+ pass,
+      html: 'Nombre del servidor: ' + name + '<br> Contraseña: ' + pass,
       timer: 3000,
       timerProgressBar: true,
       didOpen: () => {
@@ -194,7 +194,7 @@ export class MainComponent implements OnInit {
 
   refresh(): void { window.location.reload(); }
 
-///////////////////////////////////////////////////////////
+  ///////////////////////////////////////////////////////////
   public isCollapsed = true;
   public isCollapsed2 = true;
 
@@ -208,7 +208,7 @@ export class MainComponent implements OnInit {
 
   gameStart() {
     this.rest.gameStart(this.startGame).subscribe((result) => {
-     // this.router.navigate(['']);
+      // this.router.navigate(['']);
       console.log("si pasa por el gameStart");
     }, (err) => {
       console.log(err);
@@ -216,8 +216,8 @@ export class MainComponent implements OnInit {
   }
 
   setGroup() {
-    this.rest.setGroup(this.groupPro,this.forPartici, this.telArray).subscribe((result) => {
-     // this.router.navigate(['']);
+    this.rest.setGroup(this.groupPro, this.forPartici, this.telArray).subscribe((result) => {
+      // this.router.navigate(['']);
       console.log("si pasa por el setGroup");
     }, (err) => {
       console.log(err);
@@ -228,7 +228,7 @@ export class MainComponent implements OnInit {
 
   startRound() {
     this.rest.startRound(false, this.go).subscribe((result) => {
-     // this.router.navigate(['']);
+      // this.router.navigate(['']);
       console.log("si pasa por el startRound");
     }, (err) => {
       console.log(err);
@@ -237,7 +237,7 @@ export class MainComponent implements OnInit {
 
   startRound2() {
     this.rest.startRound(true, this.go).subscribe((result) => {
-     // this.router.navigate(['']);
+      // this.router.navigate(['']);
       console.log("si pasa por el startRound");
     }, (err) => {
       console.log(err);

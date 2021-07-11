@@ -51,12 +51,12 @@ export class RestService {
   //GET
   getGameList(): Observable<any> {
     const httpOptions = {
-      headers: new HttpHeaders({ 
+      headers: new HttpHeaders({
         'Content-Type': 'application/json',
 
       })
     };
-    return this.http.get(this.getEndpoint() + 'api/Game/GetGames', httpOptions);
+    return this.http.get(this.getEndpoint() + 'Game/GetGames', httpOptions);
   }
 
   //POST
@@ -68,7 +68,7 @@ export class RestService {
       })
     };
 
-    return this.http.post<any>(this.getEndpoint() + 'game/create', JSON.stringify(game), httpOptions);
+    return this.http.post<any>(this.getEndpoint() + 'Game/PostGame', JSON.stringify(game), httpOptions);
   }
 
   //------------ROUND-----------------
@@ -84,7 +84,7 @@ export class RestService {
 
     };
 
-    return this.http.get(this.getEndpoint() + 'game/' + gameId, httpOptions);
+    return this.http.get(this.getEndpoint() + 'Game/' + gameId, httpOptions);
   }
 
 
@@ -98,8 +98,8 @@ export class RestService {
 
       })
     };
-    const body = {};
-    return this.http.put(this.getEndpoint() + 'game/' + enterPlayerData.gameId + '/join', body, httpOptions);
+    return this.http.post(this.getEndpoint() + 'Player/PostPlayer', JSON.stringify(enterPlayerData), httpOptions);
+    // put -> post  // 'game/' + enterPlayerData.gameId + '/join'
   }
 
   //HEAD
@@ -112,7 +112,8 @@ export class RestService {
       })
     };
 
-    return this.http.head(this.getEndpoint() + 'game/' + gameData.gameId + '/start', httpOptions);
+    return this.http.head(this.getEndpoint() + 'Game/start/' + gameData.gameId, httpOptions);
+    // 'game/' + gameData.gameId + '/start'
   }
 
   //POST1
@@ -149,7 +150,7 @@ export class RestService {
 
 
   getGame(gameId): Observable<any> {
-    return this.http.get(this.getEndpoint() + 'api/Game/' + gameId, httpOptions).pipe(
+    return this.http.get(this.getEndpoint() + 'Game/' + gameId, httpOptions).pipe(
       map(this.extractData),
     );
   }

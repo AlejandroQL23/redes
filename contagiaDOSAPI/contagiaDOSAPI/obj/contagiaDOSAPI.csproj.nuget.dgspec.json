@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "C:\\source-code\\redes\\contagiaDOSAPI\\contagiaDOSAPI\\contagiaDOSAPI.csproj": {}
+    "C:\\RedesProyecto\\redes\\contagiaDOSAPI\\contagiaDOSAPI\\contagiaDOSAPI.csproj": {}
   },
   "projects": {
-    "C:\\source-code\\redes\\contagiaDOSAPI\\contagiaDOSAPI\\contagiaDOSAPI.csproj": {
+    "C:\\RedesProyecto\\redes\\contagiaDOSAPI\\contagiaDOSAPI\\contagiaDOSAPI.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\source-code\\redes\\contagiaDOSAPI\\contagiaDOSAPI\\contagiaDOSAPI.csproj",
+        "projectUniqueName": "C:\\RedesProyecto\\redes\\contagiaDOSAPI\\contagiaDOSAPI\\contagiaDOSAPI.csproj",
         "projectName": "contagiaDOSAPI",
-        "projectPath": "C:\\source-code\\redes\\contagiaDOSAPI\\contagiaDOSAPI\\contagiaDOSAPI.csproj",
-        "packagesPath": "C:\\Users\\diego\\.nuget\\packages\\",
-        "outputPath": "C:\\source-code\\redes\\contagiaDOSAPI\\contagiaDOSAPI\\obj\\",
+        "projectPath": "C:\\RedesProyecto\\redes\\contagiaDOSAPI\\contagiaDOSAPI\\contagiaDOSAPI.csproj",
+        "packagesPath": "C:\\Users\\Usuario\\.nuget\\packages\\",
+        "outputPath": "C:\\RedesProyecto\\redes\\contagiaDOSAPI\\contagiaDOSAPI\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Progress\\ToolboxNuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\diego\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Usuario\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Telerik UI for WPF.config"
         ],
@@ -86,7 +86,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.204\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.201\\RuntimeIdentifierGraph.json"
         }
       }
     }

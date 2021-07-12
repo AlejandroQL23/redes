@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 import { map, catchError, tap } from 'rxjs/operators';
+import { stringify } from '@angular/compiler/src/util';
+
 
 
 const endpoint_web = 'localhost:44395';
@@ -12,7 +14,7 @@ const httpOptions = {
 };
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root' 
 })
 export class RestService {
 
@@ -103,16 +105,16 @@ export class RestService {
   }
 
   //HEAD
-  gameStart(gameData: any): Observable<any> {
+  gameStart(gameId: any): Observable<any> { 
     const httpOptions = {
-      headers: new HttpHeaders({
+      headers: new HttpHeaders({ 
         'Content-Type': 'application/json',
-        'name': gameData.name,
-        'password': gameData.password
+        'gameId' : stringify(gameId)
+
       })
     };
 
-    return this.http.head(this.getEndpoint() + 'Game/start/' + gameData.gameId, httpOptions);
+    return this.http.head(this.getEndpoint() + 'Game/start/', httpOptions);
     // 'game/' + gameData.gameId + '/start'
   }
 

@@ -133,7 +133,7 @@ namespace contagiaDOSAPI.Controllers
         [EnableCors("GetAllPolicy")]
         [Route("[action]")]
         [HttpHead("{gameId}")]
-        public async Task<ActionResult<Game>> start(int gameId)
+       public async Task<ActionResult<Game>> start([FromHeader]int gameId)
         {
             playerController = new PlayerController(_context);
             playerController.PostRed(gameId);

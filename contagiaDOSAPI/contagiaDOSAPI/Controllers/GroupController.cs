@@ -108,7 +108,13 @@ namespace contagiaDOSAPI.Controllers
 
             return group;
         }
+        //--------------------------------------------------------------------
 
+
+
+
+
+        //--------------------------------------------------------------------
         private bool GroupExists(int id)
         {
             return _context.Group.Any(e => e.Id == id);

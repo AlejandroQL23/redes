@@ -47,7 +47,7 @@ export class GameComponent implements OnInit {
   }
 
   gameStart() {
-    this.rest.gameStart(this.startGame).subscribe((result) => {
+    this.rest.gameStart(this.startGame.gameId).subscribe((result) => {
      // this.router.navigate(['']);
       console.log("si pasa por el gameStart");
     }, (err) => {

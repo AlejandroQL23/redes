@@ -14,7 +14,7 @@ export class GameComponent implements OnInit {
   game : any;
 
   @Input() playerData = {gameId:'', password:'', name:''};
-  @Input() enterPlayerData = {gameId:'', name:'',password:''};
+  @Input() enterPlayerData = {gameId:'', playername:'',password:''};
 
   @Input() go = {gameId:'', name:'',password:''};
 
@@ -47,7 +47,7 @@ export class GameComponent implements OnInit {
   }
 
   gameStart() {
-    this.rest.gameStart(this.startGame.gameId).subscribe((result) => {
+    this.rest.gameStart(this.startGame,this.startGame.gameId).subscribe((result) => {
      // this.router.navigate(['']);
       console.log("si pasa por el gameStart");
     }, (err) => {

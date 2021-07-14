@@ -10,9 +10,9 @@ namespace contagiaDOSAPI.Models.Entities
     public partial class Group
     {
         public int Id { get; set; }
-        public int? PlayerId { get; set; }
         public string Name { get; set; }
+        public int? RoundId { get; set; }
 
-        public virtual Player Player { get; set; }
+        public virtual Round Round { get; set; }
     }
 }

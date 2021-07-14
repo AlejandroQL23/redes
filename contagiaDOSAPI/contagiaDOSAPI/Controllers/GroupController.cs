@@ -33,8 +33,8 @@ namespace contagiaDOSAPI.Controllers
             return await _context.Group.Select(groupItem => new Group()
             {
                 Id = groupItem.Id,
-                PlayerId = groupItem.PlayerId,
-                Name = groupItem.Name
+                Name = groupItem.Name,
+                RoundId = groupItem.RoundId
             }).ToListAsync();
         }
 
@@ -84,12 +84,23 @@ namespace contagiaDOSAPI.Controllers
         [EnableCors("GetAllPolicy")]
         [Route("[action]")]
         [HttpPost]
-        public async Task<ActionResult<Group>> PostGroup(Group groups)
+        public async Task<ActionResult<Group>> PostGroup([FromBody] string[] a, [FromHeader] int gameId)
         {
-            _context.Group.Add(groups);
-            await _context.SaveChangesAsync();
+            int[] arrayLastRound = (from rounds in _context.Round where rounds.GameId == gameId select rounds.Id).ToArray();
+            int lastRound = arrayLastRound[arrayLastRound.Length - 1];
+            Group group = new Group();
+            for (int i = 0; i < a.Length; i++)
+            {
+                group.Id = 0;
+                group.Name = a[i];
+                group.RoundId = lastRound;
 
-            return CreatedAtAction("GetGroups", new { id = groups.Id }, groups);
+                _context.Group.Add(group);
+                await _context.SaveChangesAsync();
+
+            }
+
+            return CreatedAtAction("GetGroups", new { id = group.Id }, group);
         }
 
         // DELETE: Group/5
@@ -108,13 +119,7 @@ namespace contagiaDOSAPI.Controllers
 
             return group;
         }
-        //--------------------------------------------------------------------
 
-
-
-
-
-        //--------------------------------------------------------------------
         private bool GroupExists(int id)
         {
             return _context.Group.Any(e => e.Id == id);

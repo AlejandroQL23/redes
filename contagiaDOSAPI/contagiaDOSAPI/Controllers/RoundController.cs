@@ -18,7 +18,7 @@ namespace contagiaDOSAPI.Controllers
     public class RoundController : ControllerBase
     {
         private readonly contagiaDOSredesContext _context;
-
+        PlayerController playerController;
         public RoundController(contagiaDOSredesContext context)
         {
             _context = new contagiaDOSredesContext();
@@ -35,6 +35,8 @@ namespace contagiaDOSAPI.Controllers
                 Id = roundItem.Id,
                 Leader = roundItem.Leader,
                 Psychowin = roundItem.Psychowin,
+                GameId = roundItem.GameId,
+                RoundNumber = roundItem.RoundNumber
             }).ToListAsync();
         }
 
@@ -53,7 +55,7 @@ namespace contagiaDOSAPI.Controllers
 
             return round;
         }
-
+         
         // PUT: Round/1 --->Also you have to put the id
         [EnableCors("GetAllPolicy")]
         [Route("[action]")]
@@ -86,6 +88,11 @@ namespace contagiaDOSAPI.Controllers
         [HttpPost]
         public async Task<ActionResult<Game>> PostRound(Round round)
         {
+            playerController = new PlayerController(_context);
+            round.Leader = playerController.leader(round.GameId);
+            Round[] arrayLastRoundNumber = (from rounds in _context.Round where rounds.GameId == round.GameId select rounds).ToArray();
+            round.RoundNumber = arrayLastRoundNumber.Length;
+            round.Psychowin = false;
             _context.Round.Add(round);
             await _context.SaveChangesAsync();
 

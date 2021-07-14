@@ -19,7 +19,7 @@ export class MainComponent implements OnInit {
   game: any;
 
   @Input() playerData = { gameId: '', owner: '', password: '' };
-  @Input() enterPlayerData = { gameId: '', name: '', password: '' };
+  @Input() enterPlayerData = { gameId: '', temporalp: '', password: '', players:''};//////
   @Input() go = { gameId: '', name: '', password: '' };
   @Input() startGame = { gameId: '', name: '', password: '' };
   @Input() groupPro = { gameId: '', name: '', password: '' };
@@ -207,7 +207,7 @@ export class MainComponent implements OnInit {
   }
 
   gameStart() {
-    this.rest.gameStart(this.startGame.gameId).subscribe((result) => {
+    this.rest.gameStart(this.startGame,this.startGame.gameId).subscribe((result) => {
       // this.router.navigate(['']);
       console.log("si pasa por el gameStart");
     }, (err) => {
@@ -216,7 +216,7 @@ export class MainComponent implements OnInit {
   }
 
   setGroup() {
-    this.rest.setGroup(this.groupPro, this.forPartici, this.telArray).subscribe((result) => {
+    this.rest.setGroup(this.groupPro, this.telArray).subscribe((result) => {
       // this.router.navigate(['']);
       console.log("si pasa por el setGroup");
     }, (err) => {

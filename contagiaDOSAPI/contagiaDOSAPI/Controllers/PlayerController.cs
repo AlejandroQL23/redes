@@ -232,11 +232,12 @@ namespace contagiaDOSAPI.Controllers
         }
 
         [EnableCors("GetAllPolicy")]
-        public void leader(int gameId) {
+        public string leader(int gameId)
+        {
             Player[] array = (from player in _context.Player where player.GameId == gameId select player).ToArray();
             Random r = new Random();
             int x = r.Next(0, array.Length);
-            Console.WriteLine(array[x].Name);
+            return array[x].Name;
         }
 
 

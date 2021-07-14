@@ -199,9 +199,10 @@
                 <div class="col-md-4 col-sm-12">
                     <label>Ingrese participante</label>
                     <input type="text" [(ngModel)]="enterPlayerData.gameId" placeholder="ID" class="form-control" name="seePut" id="seePut"disabled hidden>
-                    <input type="text" [(ngModel)]="enterPlayerData.name" placeholder="Ingrese su nombre" class="form-control" name="namePut" id="namePut">
+                    <input type="text" [(ngModel)]="enterPlayerData.temporalp" placeholder="Ingrese su nombre" class="form-control" name="namePut" id="namePut">
                     <input type="password" [(ngModel)]="enterPlayerData.password" placeholder="Contraseña" class="form-control" name="passPut" id="passPut"disabled hidden>
-                        <button class="btn btn-primary" (click)="enterPlayer()" >Ingresar</button>
+                    <input type="text" [(ngModel)]="enterPlayerData.players" class="form-control" name="playersPut" id="playersPut" disabled>    
+                    <button class="btn btn-primary" (click)="enterPlayer()" >Ingresar</button>
                 </div>
 
                 <br>

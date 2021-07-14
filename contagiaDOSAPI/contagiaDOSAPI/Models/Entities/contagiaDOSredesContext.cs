@@ -51,25 +51,29 @@ namespace contagiaDOSAPI.Models.Entities
                     .HasColumnName("password")
                     .HasMaxLength(20);
 
+                entity.Property(e => e.Players).HasColumnName("players");
+
                 entity.Property(e => e.Status)
                     .HasColumnName("status")
                     .HasMaxLength(20);
+
+                entity.Property(e => e.Temporalp)
+                    .HasColumnName("temporalp")
+                    .HasMaxLength(50);
             });
 
             modelBuilder.Entity<Group>(entity =>
             {
                 entity.Property(e => e.Id).HasColumnName("id");
 
-                entity.Property(e => e.Name)
-                    .HasColumnName("name")
-                    .HasMaxLength(20);
+                entity.Property(e => e.Name).HasColumnName("name");
 
-                entity.Property(e => e.PlayerId).HasColumnName("player_id");
+                entity.Property(e => e.RoundId).HasColumnName("roundId");
 
-                entity.HasOne(d => d.Player)
+                entity.HasOne(d => d.Round)
                     .WithMany(p => p.Group)
-                    .HasForeignKey(d => d.PlayerId)
-                    .HasConstraintName("FK_Group_Player");
+                    .HasForeignKey(d => d.RoundId)
+                    .HasConstraintName("FK_Group_Round");
             });
 
             modelBuilder.Entity<Player>(entity =>
@@ -92,9 +96,9 @@ namespace contagiaDOSAPI.Models.Entities
 
             modelBuilder.Entity<Round>(entity =>
             {
-                entity.Property(e => e.Id)
-                    .HasColumnName("id")
-                    .ValueGeneratedOnAdd();
+                entity.Property(e => e.Id).HasColumnName("id");
+
+                entity.Property(e => e.GameId).HasColumnName("gameId");
 
                 entity.Property(e => e.Leader)
                     .HasColumnName("leader")
@@ -102,10 +106,11 @@ namespace contagiaDOSAPI.Models.Entities
 
                 entity.Property(e => e.Psychowin).HasColumnName("psychowin");
 
-                entity.HasOne(d => d.IdNavigation)
-                    .WithOne(p => p.Round)
-                    .HasForeignKey<Round>(d => d.Id)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
+                entity.Property(e => e.RoundNumber).HasColumnName("roundNumber");
+
+                entity.HasOne(d => d.Game)
+                    .WithMany(p => p.Round)
+                    .HasForeignKey(d => d.GameId)
                     .HasConstraintName("FK_Round_Game");
             });
 

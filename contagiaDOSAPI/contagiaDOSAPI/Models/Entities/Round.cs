@@ -9,10 +9,18 @@ namespace contagiaDOSAPI.Models.Entities
 {
     public partial class Round
     {
+        public Round()
+        {
+            Group = new HashSet<Group>();
+        }
+
         public int Id { get; set; }
         public string Leader { get; set; }
         public bool? Psychowin { get; set; }
+        public int GameId { get; set; }
+        public int? RoundNumber { get; set; }
 
-        public virtual Game IdNavigation { get; set; }
+        public virtual Game Game { get; set; }
+        public virtual ICollection<Group> Group { get; set; }
     }
 }

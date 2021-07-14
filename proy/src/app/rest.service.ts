@@ -58,7 +58,7 @@ export class RestService {
 
       })
     };
-    return this.http.get(this.getEndpoint() + 'Game/GetGames', httpOptions);
+    return this.http.get(this.getEndpoint() + 'Game/', httpOptions);
   }
 
   //POST
@@ -70,7 +70,13 @@ export class RestService {
       })
     };
 
-    return this.http.post<any>(this.getEndpoint() + 'Game/PostGame', JSON.stringify(game), httpOptions);
+    const body = {
+      'name': game.name,
+      'password' : game.password
+
+    };
+
+    return this.http.post<any>(this.getEndpoint() + 'Game/create', JSON.stringify(body), httpOptions);
   }
 
   //------------ROUND-----------------
@@ -95,31 +101,34 @@ export class RestService {
     const httpOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
-        'name': enterPlayerData.name,
-        'password': enterPlayerData.password
+        'temporalp': enterPlayerData.temporalp,
+        'password': enterPlayerData.password,
+        'players' : enterPlayerData.players
 
       })
     };
-    return this.http.post(this.getEndpoint() + 'Player/PostPlayer', JSON.stringify(enterPlayerData), httpOptions);
+    return this.http.put(this.getEndpoint() + 'Game/'+enterPlayerData.gameId+'/join', JSON.stringify(enterPlayerData), httpOptions);
     // put -> post  // 'game/' + enterPlayerData.gameId + '/join'
+    //, JSON.stringify(enterPlayerData)
   }
 
   //HEAD
-  gameStart(gameId: any): Observable<any> { 
+  gameStart(startGame:any,gameId: any): Observable<any> { 
     const httpOptions = {
       headers: new HttpHeaders({ 
         'Content-Type': 'application/json',
-        'gameId' : stringify(gameId)
+        'name': startGame.name, 
+        'password' :  startGame.password
 
       })
-    };
-
-    return this.http.head(this.getEndpoint() + 'Game/start/', httpOptions);
+    }; 
+    return this.http.head(this.getEndpoint() + 'Game/'+gameId+'/start', httpOptions);
     // 'game/' + gameData.gameId + '/start'
+    //JSON.stringify(startGame)
   }
 
   //POST1
-  setGroup(groupPro: any, forPartici: any, registerForm: any): Observable<any> {
+  setGroup(groupPro: any, registerForm: any): Observable<any> {
     console.log(registerForm);
     const httpOptions = {
       headers: new HttpHeaders({

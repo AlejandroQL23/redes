@@ -12,6 +12,7 @@ namespace contagiaDOSAPI.Models.Entities
         public Game()
         {
             Player = new HashSet<Player>();
+            Round = new HashSet<Round>();
         }
 
         public int GameId { get; set; }
@@ -19,8 +20,10 @@ namespace contagiaDOSAPI.Models.Entities
         public string Owner { get; set; }
         public string Password { get; set; }
         public string Status { get; set; }
+        public string Players { get; set; }
+        public string Temporalp { get; set; }
 
-        public virtual Round Round { get; set; }
         public virtual ICollection<Player> Player { get; set; }
+        public virtual ICollection<Round> Round { get; set; }
     }
 }

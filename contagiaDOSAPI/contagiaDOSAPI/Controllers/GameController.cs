@@ -60,13 +60,7 @@ namespace contagiaDOSAPI.Controllers
 
             return game;
         }
-        //---------------------------------------------------------------------
-        public Game saveMe(Game game)
-        {
-            GetGame(game.Name, game.Password, game.GameId);
 
-            return game;
-        }
         //---------------------------------------------------------------------
         // PUT: Game/1 --->Also you have to put the id 
         [EnableCors("GetAllPolicy")]
@@ -74,9 +68,10 @@ namespace contagiaDOSAPI.Controllers
         [HttpPut]
         public async Task<IActionResult> join([FromHeader] string players, [FromHeader] string temporalp, [FromHeader] string password, [FromBody] Game games) // NO RETORNA NADA - return ok porque tiene que retornar
         {
-            Game temporalGame = saveMe(games);
-            games = temporalGame;
-            games.Players = games.Players + " , " + temporalp;
+            var temporalPlayers = (from game in _context.Game where game.GameId == games.GameId select game.Players).FirstOrDefault();
+
+  
+            games.Players = temporalPlayers + " , " + temporalp;
 
 
             _context.Entry(games).State = EntityState.Modified;
@@ -101,6 +96,34 @@ namespace contagiaDOSAPI.Controllers
             }
             return Ok();
         }
+        //---------------------------------------------------------------------
+
+        [EnableCors("GetAllPolicy")]
+        [Route("{games.GameId}/[action]")]
+        [HttpPut]
+        public async Task<IActionResult> PutStatus(Game games) // NO RETORNA NADA - return ok porque tiene que retornar
+        {
+           _context.Entry(games).State = EntityState.Modified;
+            try
+            {
+
+                await _context.SaveChangesAsync();
+
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                if (!GameExists(games.GameId))
+                {
+                    return NotFound();
+                }
+                else
+                {
+                    throw;
+                }
+            }
+            return Ok();
+        }
+
         //---------------------------------------------------------------------
         [EnableCors("GetAllPolicy")]
         [Route("[action]")]
@@ -188,12 +211,15 @@ namespace contagiaDOSAPI.Controllers
         [HttpHead("{gameId}")]
         public async Task<ActionResult<Game>> start([FromHeader] string name, [FromHeader] string password, int gameId)
         {
+            Game gameStatus = (from game in _context.Game where game.GameId == gameId select game).FirstOrDefault(); ;
             playerController = new PlayerController(_context);
             roundController = new RoundController(_context);
             playerController.PostRed(gameId);
             Round round = new Round();
             round.GameId = gameId;
             roundController.PostRound(round);
+            gameStatus.Status = "Leader";
+            PutStatus(gameStatus);
 
             return Ok();
         }

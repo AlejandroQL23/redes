@@ -199,7 +199,7 @@ login(player) {
         sessionStorage.setItem("token", tokenStr);
         sessionStorage.setItem("Id", userData.id);
         this.PlayerSubject.next(sessionStorage.getItem(player.gameid));
-        console.log(userData.name + " ANDO BISCANDO NOMBRE");
+        console.log(userData.name + " ANDO BUSCANDO NOMBRE");
         this.ID = userData.id;
         console.log(this.ID);
         return userData;

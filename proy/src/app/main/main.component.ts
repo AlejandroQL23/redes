@@ -5,6 +5,7 @@ import { ModalDismissReasons, NgbModal, NgbModalRef } from '@ng-bootstrap/ng-boo
 import { FormGroup, FormControl, Validators, FormArray, FormBuilder } from '@angular/forms';
 import { first } from 'rxjs/operators';
 import Swal from 'sweetalert2';
+import { PathLocationStrategy } from '@angular/common';
 
 
 @Component({
@@ -15,6 +16,7 @@ import Swal from 'sweetalert2';
 export class MainComponent implements OnInit {
 
   title = 'appBootstrap';
+  totalArray: number;
   games: any = [];
   telArray: any = [];
   game: any;
@@ -255,26 +257,36 @@ export class MainComponent implements OnInit {
     }, (err) => {
       console.log(err);
     });
+    this.totalArray = this.telArray.length -1;
+    console.log(this.totalArray);
     this.telArray = [];
   }
 
 //---------------------------------------------------------------
   startRound() {
-    this.rest.startRound(false, this.go).subscribe((result) => {
-      // this.router.navigate(['']);
-      console.log("si pasa por el startRound");
-    }, (err) => {
-      console.log(err);
-    });
+    if(this.totalArray == 0){
+      this.rest.startRound(false, this.go).subscribe((result) => {
+        // this.router.navigate(['']);
+        console.log("si pasa por el startRound");
+      }, (err) => {
+        console.log(err);
+      });
+    }else{
+      this.totalArray = this.totalArray - 1;
+    }
   }
 //---------------------------------------------------------------
   startRound2() {
-    this.rest.startRound(true, this.go).subscribe((result) => {
-      // this.router.navigate(['']);
-      console.log("si pasa por el startRound");
-    }, (err) => {
-      console.log(err);
-    });
+    if(this.totalArray == 0){
+      this.rest.startRound(true, this.go).subscribe((result) => {
+        // this.router.navigate(['']);
+        console.log("si pasa por el startRound");
+      }, (err) => {
+        console.log(err);
+      });
+    }else{
+        this.totalArray = this.totalArray - 1;
+    }
   }
 //---------------------------------------------------------------
 

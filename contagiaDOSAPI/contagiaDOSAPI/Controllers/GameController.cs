@@ -226,7 +226,7 @@ namespace contagiaDOSAPI.Controllers
         //---------------------------------------------------------------------
         [EnableCors("GetAllPolicy")]
         [Route("{gameId}/[action]")]
-        [HttpPost("{gameId}")]
+        [HttpPost]
         public async Task<ActionResult<Game>> group([FromHeader] string name, [FromHeader] string password, int gameId, [FromBody]string[] registerForm)
         {
 
@@ -239,7 +239,7 @@ namespace contagiaDOSAPI.Controllers
         //---------------------------------------------------------------------
         [EnableCors("GetAllPolicy")]
         [Route("{gameId}/[action]")]
-        [HttpPost("{gameId}")]
+        [HttpPost]
         public async Task<ActionResult<Game>> go([FromHeader] string name, [FromHeader] string password, int gameId, [FromBody] bool IsPsycho)
         {
             roundController = new RoundController(_context);

@@ -151,7 +151,7 @@ export class RestService {
       'group': registerForm
 
     };
-    return this.http.post<any>(this.getEndpoint() + 'game/' + groupPro.gameId + '/group', JSON.stringify(body), httpOptions);
+    return this.http.post<any>(this.getEndpoint() + 'Game/' + groupPro.gameId + '/group', registerForm, httpOptions);
   }
 
   //POST2
@@ -166,7 +166,7 @@ export class RestService {
     const body = {
       'psycho': Ispsycho
     };
-    return this.http.post<any>(this.getEndpoint() + 'game/' + go.gameId + '/go', JSON.stringify(body), httpOptions);
+    return this.http.post<any>(this.getEndpoint() + 'game/' + go.gameId + '/go', Ispsycho, httpOptions);
   }
 
 

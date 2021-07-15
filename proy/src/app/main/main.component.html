@@ -196,14 +196,23 @@
                 <br>
                 <br>
                 <br>
-                <div class="col-md-4 col-sm-12">
+                <!-- <div class="col-md-4 col-sm-12">
                     <label>Ingrese participante</label>
                     <input type="text" [(ngModel)]="enterPlayerData.gameId" placeholder="ID" class="form-control" name="seePut" id="seePut"disabled hidden>
                     <input type="text" [(ngModel)]="enterPlayerData.temporalp" placeholder="Ingrese su nombre" class="form-control" name="namePut" id="namePut">
                     <input type="password" [(ngModel)]="enterPlayerData.password" placeholder="Contraseña" class="form-control" name="passPut" id="passPut"disabled hidden>
-                    <input type="text" [(ngModel)]="enterPlayerData.players" class="form-control" name="playersPut" id="playersPut" disabled>    
+                    <input type="text" [(ngModel)]="enterPlayerData.players" class="form-control" name="playersPut" id="playersPut" disabled hidden>    
                     <button class="btn btn-primary" (click)="enterPlayer()" >Ingresar</button>
+                </div> -->
+
+                <div class="col-md-4 col-sm-12">
+                    <label>Ingrese participante</label>
+                    <input type="text" [(ngModel)]="enterPlayerData.gameId" placeholder="ID" class="form-control" name="seePut" id="seePut"disabled hidden>
+                    <input type="text" [(ngModel)]="playerIsPsycho.psycho" placeholder="Eres ..." class="form-control" name="namePut" id="namePut">
+                    <input type="password" [(ngModel)]="enterPlayerData.password" placeholder="Contraseña" class="form-control" name="passPut" id="passPut"disabled hidden>
+                        <button class="btn btn-primary" (click)="cargaInfoPsycho()" >¿Seré psicopata?</button>
                 </div>
+
 
                 <br>
                 <br>
@@ -318,9 +327,40 @@
             <div><span>Jugadores: </span >{{game.players}}</div>
             <div><span>Estatus: </span>{{game.status}}</div>
 
-            <div class="col-md-4 col-sm-12">
-                <input type="submit" class="form-control bg-success text-light" (click)="onSelect(); modal.dismiss('Cross click')" name="join" value="Unirse partida">
-            </div>
+
+            <form [formGroup]="player" (ngSubmit)="enterPlayer(); onSelect(); modal.dismiss('Cross click'); onSubmitPlayer();" #formDir="ngForm">
+                <div class="form-group" hidden>
+                    <label for="gameid">Game Id</label>
+                    <input type="text" formControlName="gameid" class="form-control" 
+                    [(ngModel)]="enterPlayerData.gameId" placeholder="ID" name="seePut" id="seePut"
+                    />
+                </div>
+                <span class="text-danger" *ngIf="player.hasError('required', 'gameid') && formDir.submitted">
+                  Se necesita gameid.
+                </span>
+
+
+                <div class="form-group">
+                    <label for="name">Nombre</label>
+                    <input type="text" formControlName="name" class="form-control" 
+                    [(ngModel)]="enterPlayerData.temporalp" placeholder="Ingrese su nombre" name="namePut" id="namePut"
+                    />
+                </div>
+                <span class="text-danger" *ngIf="player.hasError('required', 'name') && formDir.submitted">
+                  Debe ingresar su nombre.
+                </span>
+
+
+
+
+                <div class="form-group">
+                    <button  class="form-control bg-success text-light" >
+                        Unirse a partida
+                    </button>
+                </div>
+            </form>
+
+
             <!-- <select formControlName="rounds" [value]='game.rounds.id'>
                 <option *ngFor="let n of game" value={{n.id}}>
                   {{n.id}}
@@ -329,6 +369,39 @@
             
             Object.values(game.rounds)
             -->
+            
+            <form [formGroup]="player" (ngSubmit)="onSelect(); modal.dismiss('Cross click'); onSubmitPlayer();" #formDir="ngForm">
+                <div class="form-group" hidden>
+                    <label for="gameidowner">Game Id</label>
+                    <input type="text" formControlName="gameid" class="form-control" 
+                    [(ngModel)]="enterPlayerData.gameId" placeholder="ID" name="seePut" id="seePut"
+                    />
+                </div>
+                <span class="text-danger" *ngIf="player.hasError('required', 'gameid') && formDir.submitted">
+                  Se necesita gameid.
+                </span>
+
+
+                <div class="form-group">
+                    <label for="nameowner">Nombre owner</label>
+                    <input type="text" formControlName="name" class="form-control" 
+                    [(ngModel)]="enterPlayerData.temporalp" placeholder="Ingrese su nombre" name="namePut" id="namePut"
+                    />
+                </div>
+                <span class="text-danger" *ngIf="player.hasError('required', 'name') && formDir.submitted">
+                  Debe ingresar su nombre.
+                </span>
+
+
+
+
+                <div class="form-group">
+                    <button  class="form-control bg-success text-light" >
+                        Unirse como owner
+                    </button>
+                </div>
+            </form>
+
         </div>
 
 

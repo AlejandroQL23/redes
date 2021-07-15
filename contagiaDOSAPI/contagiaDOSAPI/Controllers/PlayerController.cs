@@ -239,7 +239,27 @@ namespace contagiaDOSAPI.Controllers
             int x = r.Next(0, array.Length);
             return array[x].Name;
         }
+        //------------------------------------------------------------------------------------
+        [EnableCors("GetAllPolicy")]
+        [Route("[action]")]
+        [HttpPost]
+        public IActionResult PostAuthenticate(Player player)
+        {
+            ObjectResult result;
+            var playerVar = _context.Player.Any(e => e.GameId == player.GameId && e.Name == player.Name);
+            var palyerVarSelect = (from s in _context.Player where s.GameId == player.GameId && s.Name == player.Name select s);
+            var playerPoS = palyerVarSelect.FirstOrDefault();
+            if (playerVar == false)
+            {
+                result = NotFound(playerPoS);
+            }
+            else
+            {
+                result = Ok(playerPoS); //supervisorFoD.Psycho
+            }
 
+            return result;
+        }
 
     }
 }

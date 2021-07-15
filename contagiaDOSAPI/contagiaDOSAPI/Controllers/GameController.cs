@@ -66,7 +66,7 @@ namespace contagiaDOSAPI.Controllers
         [EnableCors("GetAllPolicy")]
         [Route("{games.GameId}/[action]")]
         [HttpPut]
-        public async Task<IActionResult> join([FromHeader] string players, [FromHeader] string temporalp, [FromHeader] string password, [FromBody] Game games) // NO RETORNA NADA - return ok porque tiene que retornar
+        public async Task<IActionResult> join([FromHeader] string temporalp, [FromHeader] string password, [FromBody] Game games) // NO RETORNA NADA - return ok porque tiene que retornar
         {
             var temporalPlayers = (from game in _context.Game where game.GameId == games.GameId select game.Players).FirstOrDefault();
 

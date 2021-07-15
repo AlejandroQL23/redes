@@ -409,13 +409,6 @@ C:\source-code\redes\contagiaDOSAPI\contagiaDOSAPI\obj\Debug\netcoreapp3.1\conta
 C:\source-code\redes\contagiaDOSAPI\contagiaDOSAPI\obj\Debug\netcoreapp3.1\contagiaDOSAPI.pdb
 C:\source-code\redes\contagiaDOSAPI\contagiaDOSAPI\obj\Debug\netcoreapp3.1\contagiaDOSAPI.genruntimeconfig.cache
 C:\source-code\redes\contagiaDOSAPI\contagiaDOSAPI\obj\Debug\netcoreapp3.1\contagiaDOSAPI.csprojAssemblyReference.cache
-C:\RedesProyecto\redes\contagiaDOSAPI\contagiaDOSAPI\bin\Debug\netcoreapp3.1\Microsoft.EntityFrameworkCore.dll
-C:\RedesProyecto\redes\contagiaDOSAPI\contagiaDOSAPI\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Logging.Abstractions.dll
-C:\RedesProyecto\redes\contagiaDOSAPI\contagiaDOSAPI\bin\Debug\netcoreapp3.1\Microsoft.Identity.Client.dll
-C:\RedesProyecto\redes\contagiaDOSAPI\contagiaDOSAPI\bin\Debug\netcoreapp3.1\de\Microsoft.CodeAnalysis.CSharp.resources.dll
-C:\RedesProyecto\redes\contagiaDOSAPI\contagiaDOSAPI\bin\Debug\netcoreapp3.1\runtimes\win-arm64\native\sni.dll
-C:\RedesProyecto\redes\contagiaDOSAPI\contagiaDOSAPI\bin\Debug\netcoreapp3.1\runtimes\win\lib\netcoreapp2.0\System.Runtime.Caching.dll
-C:\RedesProyecto\redes\contagiaDOSAPI\contagiaDOSAPI\obj\Debug\netcoreapp3.1\contagiaDOSAPI.RazorTargetAssemblyInfo.cache
 C:\RedesProyecto\redes\contagiaDOSAPI\contagiaDOSAPI\bin\Debug\netcoreapp3.1\appsettings.Development.json
 C:\RedesProyecto\redes\contagiaDOSAPI\contagiaDOSAPI\bin\Debug\netcoreapp3.1\appsettings.json
 C:\RedesProyecto\redes\contagiaDOSAPI\contagiaDOSAPI\bin\Debug\netcoreapp3.1\contagiaDOSAPI.exe
@@ -436,6 +429,7 @@ C:\RedesProyecto\redes\contagiaDOSAPI\contagiaDOSAPI\bin\Debug\netcoreapp3.1\Mic
 C:\RedesProyecto\redes\contagiaDOSAPI\contagiaDOSAPI\bin\Debug\netcoreapp3.1\Microsoft.CodeAnalysis.Razor.dll
 C:\RedesProyecto\redes\contagiaDOSAPI\contagiaDOSAPI\bin\Debug\netcoreapp3.1\Microsoft.CodeAnalysis.Workspaces.dll
 C:\RedesProyecto\redes\contagiaDOSAPI\contagiaDOSAPI\bin\Debug\netcoreapp3.1\Microsoft.Data.SqlClient.dll
+C:\RedesProyecto\redes\contagiaDOSAPI\contagiaDOSAPI\bin\Debug\netcoreapp3.1\Microsoft.EntityFrameworkCore.dll
 C:\RedesProyecto\redes\contagiaDOSAPI\contagiaDOSAPI\bin\Debug\netcoreapp3.1\Microsoft.EntityFrameworkCore.Abstractions.dll
 C:\RedesProyecto\redes\contagiaDOSAPI\contagiaDOSAPI\bin\Debug\netcoreapp3.1\Microsoft.EntityFrameworkCore.Design.dll
 C:\RedesProyecto\redes\contagiaDOSAPI\contagiaDOSAPI\bin\Debug\netcoreapp3.1\Microsoft.EntityFrameworkCore.Relational.dll
@@ -448,8 +442,10 @@ C:\RedesProyecto\redes\contagiaDOSAPI\contagiaDOSAPI\bin\Debug\netcoreapp3.1\Mic
 C:\RedesProyecto\redes\contagiaDOSAPI\contagiaDOSAPI\bin\Debug\netcoreapp3.1\Microsoft.Extensions.DependencyInjection.dll
 C:\RedesProyecto\redes\contagiaDOSAPI\contagiaDOSAPI\bin\Debug\netcoreapp3.1\Microsoft.Extensions.DependencyInjection.Abstractions.dll
 C:\RedesProyecto\redes\contagiaDOSAPI\contagiaDOSAPI\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Logging.dll
+C:\RedesProyecto\redes\contagiaDOSAPI\contagiaDOSAPI\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Logging.Abstractions.dll
 C:\RedesProyecto\redes\contagiaDOSAPI\contagiaDOSAPI\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Options.dll
 C:\RedesProyecto\redes\contagiaDOSAPI\contagiaDOSAPI\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Primitives.dll
+C:\RedesProyecto\redes\contagiaDOSAPI\contagiaDOSAPI\bin\Debug\netcoreapp3.1\Microsoft.Identity.Client.dll
 C:\RedesProyecto\redes\contagiaDOSAPI\contagiaDOSAPI\bin\Debug\netcoreapp3.1\Microsoft.IdentityModel.JsonWebTokens.dll
 C:\RedesProyecto\redes\contagiaDOSAPI\contagiaDOSAPI\bin\Debug\netcoreapp3.1\Microsoft.IdentityModel.Logging.dll
 C:\RedesProyecto\redes\contagiaDOSAPI\contagiaDOSAPI\bin\Debug\netcoreapp3.1\Microsoft.IdentityModel.Protocols.dll
@@ -491,6 +487,7 @@ C:\RedesProyecto\redes\contagiaDOSAPI\contagiaDOSAPI\bin\Debug\netcoreapp3.1\tr\
 C:\RedesProyecto\redes\contagiaDOSAPI\contagiaDOSAPI\bin\Debug\netcoreapp3.1\zh-Hans\Microsoft.CodeAnalysis.resources.dll
 C:\RedesProyecto\redes\contagiaDOSAPI\contagiaDOSAPI\bin\Debug\netcoreapp3.1\zh-Hant\Microsoft.CodeAnalysis.resources.dll
 C:\RedesProyecto\redes\contagiaDOSAPI\contagiaDOSAPI\bin\Debug\netcoreapp3.1\cs\Microsoft.CodeAnalysis.CSharp.resources.dll
+C:\RedesProyecto\redes\contagiaDOSAPI\contagiaDOSAPI\bin\Debug\netcoreapp3.1\de\Microsoft.CodeAnalysis.CSharp.resources.dll
 C:\RedesProyecto\redes\contagiaDOSAPI\contagiaDOSAPI\bin\Debug\netcoreapp3.1\es\Microsoft.CodeAnalysis.CSharp.resources.dll
 C:\RedesProyecto\redes\contagiaDOSAPI\contagiaDOSAPI\bin\Debug\netcoreapp3.1\fr\Microsoft.CodeAnalysis.CSharp.resources.dll
 C:\RedesProyecto\redes\contagiaDOSAPI\contagiaDOSAPI\bin\Debug\netcoreapp3.1\it\Microsoft.CodeAnalysis.CSharp.resources.dll
@@ -530,9 +527,11 @@ C:\RedesProyecto\redes\contagiaDOSAPI\contagiaDOSAPI\bin\Debug\netcoreapp3.1\zh-
 C:\RedesProyecto\redes\contagiaDOSAPI\contagiaDOSAPI\bin\Debug\netcoreapp3.1\zh-Hant\Microsoft.CodeAnalysis.Workspaces.resources.dll
 C:\RedesProyecto\redes\contagiaDOSAPI\contagiaDOSAPI\bin\Debug\netcoreapp3.1\runtimes\unix\lib\netcoreapp2.1\Microsoft.Data.SqlClient.dll
 C:\RedesProyecto\redes\contagiaDOSAPI\contagiaDOSAPI\bin\Debug\netcoreapp3.1\runtimes\win\lib\netcoreapp2.1\Microsoft.Data.SqlClient.dll
+C:\RedesProyecto\redes\contagiaDOSAPI\contagiaDOSAPI\bin\Debug\netcoreapp3.1\runtimes\win-arm64\native\sni.dll
 C:\RedesProyecto\redes\contagiaDOSAPI\contagiaDOSAPI\bin\Debug\netcoreapp3.1\runtimes\win-x64\native\sni.dll
 C:\RedesProyecto\redes\contagiaDOSAPI\contagiaDOSAPI\bin\Debug\netcoreapp3.1\runtimes\win-x86\native\sni.dll
 C:\RedesProyecto\redes\contagiaDOSAPI\contagiaDOSAPI\bin\Debug\netcoreapp3.1\runtimes\unix\lib\netcoreapp2.0\System.Runtime.Caching.dll
+C:\RedesProyecto\redes\contagiaDOSAPI\contagiaDOSAPI\bin\Debug\netcoreapp3.1\runtimes\win\lib\netcoreapp2.0\System.Runtime.Caching.dll
 C:\RedesProyecto\redes\contagiaDOSAPI\contagiaDOSAPI\bin\Debug\netcoreapp3.1\runtimes\win\lib\netstandard2.0\System.Security.Cryptography.ProtectedData.dll
 C:\RedesProyecto\redes\contagiaDOSAPI\contagiaDOSAPI\obj\Debug\netcoreapp3.1\contagiaDOSAPI.AssemblyInfoInputs.cache
 C:\RedesProyecto\redes\contagiaDOSAPI\contagiaDOSAPI\obj\Debug\netcoreapp3.1\contagiaDOSAPI.AssemblyInfo.cs
@@ -541,6 +540,7 @@ C:\RedesProyecto\redes\contagiaDOSAPI\contagiaDOSAPI\obj\Debug\netcoreapp3.1\con
 C:\RedesProyecto\redes\contagiaDOSAPI\contagiaDOSAPI\obj\Debug\netcoreapp3.1\staticwebassets\contagiaDOSAPI.StaticWebAssets.Manifest.cache
 C:\RedesProyecto\redes\contagiaDOSAPI\contagiaDOSAPI\obj\Debug\netcoreapp3.1\staticwebassets\contagiaDOSAPI.StaticWebAssets.xml
 C:\RedesProyecto\redes\contagiaDOSAPI\contagiaDOSAPI\obj\Debug\netcoreapp3.1\scopedcss\bundle\contagiaDOSAPI.styles.css
+C:\RedesProyecto\redes\contagiaDOSAPI\contagiaDOSAPI\obj\Debug\netcoreapp3.1\contagiaDOSAPI.RazorTargetAssemblyInfo.cache
 C:\RedesProyecto\redes\contagiaDOSAPI\contagiaDOSAPI\obj\Debug\netcoreapp3.1\contagiaDOSAPI.csproj.CopyComplete
 C:\RedesProyecto\redes\contagiaDOSAPI\contagiaDOSAPI\obj\Debug\netcoreapp3.1\contagiaDOSAPI.dll
 C:\RedesProyecto\redes\contagiaDOSAPI\contagiaDOSAPI\obj\Debug\netcoreapp3.1\contagiaDOSAPI.pdb

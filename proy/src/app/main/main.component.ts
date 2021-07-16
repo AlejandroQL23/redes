@@ -321,4 +321,8 @@ onSubmitPlayer() {
 
 }
 
+clear() {
+  this.player.reset();
+}
+
 }

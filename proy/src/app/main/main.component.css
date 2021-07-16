@@ -193,15 +193,28 @@
 
     /* ------ */
 
-    table {
+  table {
       width: 100%;
-      display:block;
   }
 
   tbody {
       height: 500px;
-      display: inline-block;
-      width: 100%;
       overflow: auto;
   }
-  
+
+  .card{
+    width: 100%;
+    height: 100%;
+    background-image: linear-gradient(to right, #d7d2cc 0%, #304352 100%);
+    box-shadow: 0 0 20px #4f9;
+  }
+
+  #modal-b{
+    background-image: linear-gradient(-20deg, #616161 0%, #9bc5c3 100%);
+  }
+  #modal-h{
+    background-image: linear-gradient(to top, #cfd9df 0%, #e2ebf0 100%);
+  }
+  #modal-f{
+    background-image: linear-gradient(to top, #cfd9df 0%, #e2ebf0 100%);
+  }

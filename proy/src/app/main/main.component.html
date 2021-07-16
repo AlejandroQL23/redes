@@ -41,8 +41,8 @@
 
 
 <div class="text-center">
-    <h1 class="display-4">contagiaDOS</h1>
-    <p>El juego en el que la estrategia puede salvarte o matarte</p>
+    <h1 class="display-4" style="text-shadow: 0 0 30px #fff;">contagiaDOS</h1>
+    <p class="text-light">El juego en el que la estrategia puede salvarte o matarte</p>
 
 
     <!-- <button class="dropdown-header" (click)="onSelect()">Link 2</button>  -->
@@ -53,71 +53,69 @@
 <section id="contact" [hidden]="IsHidden">
     <div class="container">
         <div class="row">
-
             <div class="col-md-6 col-sm-12">
-
-                <form id="server-form" role="form" action="" method="post">
-                    <div class="col-md-12 col-sm-12">
-                        <input type="text" [(ngModel)]="gameData.owner" class="form-control"
-                            placeholder="Ingrese direccion del servidor" name="name" required="">
+                <div class="card">
+                    <div class="card-body">
+                        <form id="server-form" role="form" action="" method="post">
+                            <div class="col-md-12 col-sm-12">
+                                <input type="text" [(ngModel)]="gameData.owner" class="form-control text-center" placeholder="Ingrese direccion del servidor" name="name" required="">
+                            </div>
+                        
+                            <div class="col-md-4 col-sm-12 mt-1">
+                                <input type="submit" class="form-control text-light text-center" name="createNew" value="Acceder a servidor">
+                            </div>
+                        </form>
+                        <form id="contact-form" role="form" action="" method="post">
+                            <div class="section-title">
+                                <h2>Ingresa tus datos</h2>
+                                <h6>Juega con tus amigos, pero no te fies de ellos</h6>
+                            </div>
+                            <div class="col-md-12 col-sm-12">
+                                <input type="text" [(ngModel)]="gameData.owner" class="form-control text-light text-center"
+                                    placeholder="Ingrese su nombre" name="name" required="">
+                                <input type="text" [(ngModel)]="gameData.password" class="form-control text-light text-center"
+                                    placeholder="Ingrese una contraseña" name="password" required="">
+                                <input type="text" [(ngModel)]="gameData.name" class="form-control text-light text-center"
+                                    placeholder="Ingrese servidor" name="server" required="">
+                            </div>
+                            <div class="row d-flex justify-content-center ml-4">
+                                <div class="col-md-4 col-sm-12">
+                                    <input (click)="createGame(gameData.name, gameData.password)" type="submit" class="form-control text-light" name="createNew"
+                                        value="Crear partida">
+                                </div>
+                                <div class="col-md-4 col-sm-12">
+                                    <input (click)="refresh()" type="submit"  class="form-control bg-primary text-light" name="createNew"
+                                        value="Refrescar">
+                                </div>
+                            </div>
+                        </form>
                     </div>
-
-                    <div class="col-md-4 col-sm-12">
-                        <input  type="submit" class="form-control" name="createNew"
-                            value="Acceder a servidor">
-                    </div>
-                </form>
-                
-                <form id="contact-form" role="form" action="" method="post">
-                    <div class="section-title">
-                        <h2>Ingresa tus datos</h2>
-                        <h6>Juega con tus amigos, pero no te fies de ellos</h6>
-                    </div>
-
-                    <div class="col-md-12 col-sm-12">
-                        <input type="text" [(ngModel)]="gameData.owner" class="form-control"
-                            placeholder="Ingrese su nombre" name="name" required="">
-
-                        <input type="text" [(ngModel)]="gameData.password" class="form-control"
-                            placeholder="Ingrese una contraseña" name="password" required="">
-
-                        <input type="text" [(ngModel)]="gameData.name" class="form-control"
-                            placeholder="Ingrese servidor" name="server" required="">
-                    </div>
-
-                    <div class="col-md-4 col-sm-12">
-                        <input (click)="createGame(gameData.name, gameData.password)" type="submit" class="form-control" name="createNew"
-                            value="Crear partida">
-                    </div>
-
-                    <div class="col-md-4 col-sm-12">
-                        <input (click)="refresh()" type="submit"  class="form-control bg-primary text-light" name="createNew"
-                            value="Refrescar">
-                    </div>
-                
-                </form>
+                </div>
             </div>
-            <div class="col-md-6 col-sm-12">
-                <!-- / Collapsible element -->
-                <table class='table' *ngIf="games">
-                    <thead>
-                        <tr>
-                            <th>Game Name</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr *ngFor="let s of games; let i=index;">
-                            <td>{{ s.name }}</td>
-                            <td>
-                                <a (click)="open(content, s.gameId)"> Unirse </a>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
+            <div class="col-md-6">
+                <div class="card" >
+                    <div class="card-body">
+                        <table class="table table-dark table-hover " *ngIf="games">
+                            <thead>
+                                <tr>
+                                    <th >Nombre del juego</th>
+                                    <th ></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let s of games; let i=index;">
+                                    <td>{{ s.name }}</td>
+                                    <td>
+                                        <a (click)="open(content, s.gameId)" class="text-white"> Unirse </a>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div> 
             </div>
         </div>
     </div>
-
 </section>
 
 <!---->
@@ -240,7 +238,6 @@
                         <div formArrayName="telefonos" *ngFor="let telefono of telefonos.controls; let i = index">
                             <div [formGroupName]="i">
                                 <div class="form-group row">
-  
                                     <div class="col-md-7">
                                         <input type="text" placeholder="Enviar a:" [attr.id]="'telefono' + i" class="form-control" formControlName="telefono">
                                     </div>
@@ -276,7 +273,7 @@
 
                 <div class="row">
                     <div class="d-flex justify-content-center mt-5">
-                        <input type="submit" class="form-control bg-primary text-light" (click)="onSelect()" name="join" value="Volver a MENU">
+                        <input type="submit" class="form-control bg-primary text-light" (click)="onSelect(); refresh();" name="join" value="Volver a MENU">
                     </div>
                 </div>
             
@@ -286,125 +283,118 @@
 
 <!---->
 <ng-template #content let-modal>
-    <div class="modal-header">
-      <h4 class="modal-title" id="modal-basic-title">Detalles de la partida</h4>
-      <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+    <div class="modal-header" id="modal-h">
+        <h4 class="modal-title" id="modal-basic-title">Detalles de la partida</h4>
+        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
         <span aria-hidden="true">&times;</span>
-      </button>
+        </button>
     </div>
-    <div class="modal-body">
-      <form>
-        <div class="form-group">
-          <label for="dateOfBirth">Id</label>
-          <div class="input-group">
-            <input id="gameId" class="form-control" type="text" [(ngModel)]="playerData.gameId" name="gameId" disabled>
-          </div>
-
-          <label for="dateOfBirth">Nombre</label>
-          <div class="input-group">
-            <input id="name" class="form-control" type="text" [(ngModel)]="playerData.name" name="name" disabled>
-          </div>
-
-          <label for="dateOfBirth">Contraseña</label>
-          <div class="input-group">
-            <input id="password" class="form-control" [(ngModel)]="playerData.password" name="password" disabled>
-          </div>
-
-          <div *ngIf="game" class="game">
-            
-            <div><span>Id: </span>{{game.gameId}}</div>
-            <div><span>Name: </span>{{game.name}}</div>
-            <div><span>Dueño: </span>{{game.owner}}</div>
-            <div><span>Password: </span>{{game.password}}</div>
-            <div><span>Jugadores: </span >{{game.players}}</div>
-            <div><span>Estatus: </span>{{game.status}}</div>
-
-
-            <form [formGroup]="player" (ngSubmit)="enterPlayer(); onSelect(); modal.dismiss('Cross click'); onSubmitPlayer();" #formDir="ngForm">
-                <div class="form-group" hidden>
-                    <label for="gameid">Game Id</label>
-                    <input type="text" formControlName="gameid" class="form-control" 
-                    [(ngModel)]="enterPlayerData.gameId" placeholder="ID" name="seePut" id="seePut"
-                    />
+    <div class="modal-body" id="modal-b">
+        <form>
+            <div class="form-group">
+                <label for="dateOfBirth">Id</label>
+                <div class="input-group">
+                    <input id="gameId" class="form-control" type="text" [(ngModel)]="playerData.gameId" name="gameId" disabled>
                 </div>
-                <span class="text-danger" *ngIf="player.hasError('required', 'gameid') && formDir.submitted">
-                  Se necesita gameid.
-                </span>
-
-
-                <div class="form-group">
-                    <label for="name">Nombre</label>
-                    <input type="text" formControlName="name" class="form-control" 
-                    [(ngModel)]="enterPlayerData.temporalp" placeholder="Ingrese su nombre" name="namePut" id="namePut"
-                    />
+                <label for="dateOfBirth">Nombre</label>
+                <div class="input-group">
+                    <input id="name" class="form-control" type="text" [(ngModel)]="playerData.name" name="name" disabled>
                 </div>
-                <span class="text-danger" *ngIf="player.hasError('required', 'name') && formDir.submitted">
-                  Debe ingresar su nombre.
-                </span>
-
-
-
-
-                <div class="form-group">
-                    <button  class="form-control bg-success text-light" >
-                        Unirse a partida
-                    </button>
+                <label for="dateOfBirth">Contraseña</label>
+                <div class="input-group">
+                    <input id="password" class="form-control" [(ngModel)]="playerData.password" name="password" disabled>
                 </div>
-            </form>
+                <div *ngIf="game" class="game">
+                    <div class="row mt-3 mb-3">
+                        <div class="col-6">
+                            <div class="card">
+                                <div class="card-body">
+                                    <div><span>Id: </span>{{game.gameId}}</div>
+                                    <div><span>Name: </span>{{game.name}}</div>
+                                    <div><span>Dueño: </span>{{game.owner}}</div>
+                                    <div><span>Password: </span>{{game.password}}</div>
+                                </div>
+                            </div>
+                            
+                        </div>
+                        <div class="col-6">
+                            <div class="card">
+                                <div class="card-body">
+                                    <div><span>Jugadores: </span >{{game.players}}</div>
+                                        <div><span>Estatus: </span>{{game.status}}</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <form [formGroup]="player" (ngSubmit)="enterPlayer(); onSelect(); modal.dismiss('Cross click'); onSubmitPlayer();" #formDir="ngForm">
+                        <div class="form-group" hidden>
+                            <label for="gameid">Game Id</label>
+                            <input type="text" formControlName="gameid" class="form-control" 
+                            [(ngModel)]="enterPlayerData.gameId" placeholder="ID" name="seePut" id="seePut"
+                            />
+                        </div>
+                        <span class="text-danger" *ngIf="player.hasError('required', 'gameid') && formDir.submitted">
+                            Se necesita gameid.
+                        </span>
 
+                        <div class="form-group text-light p-2">
+                            <label for="name">Nombre</label>
+                            <input type="text" formControlName="name" class="form-control" 
+                            [(ngModel)]="enterPlayerData.temporalp" placeholder="Ingrese su nombre" name="namePut" id="namePut"
+                            />
+                        </div>
+                        <span class="text-danger" *ngIf="player.hasError('required', 'name') && formDir.submitted">
+                            Debe ingresar su nombre.
+                        </span>
+
+                        <div class="form-group">
+                            <button  class="form-control bg-success text-light"  [disabled]="!player.valid">
+                                Unirse a partida
+                            </button>
+                        </div>
+                    </form>
 
             <!-- <select formControlName="rounds" [value]='game.rounds.id'>
                 <option *ngFor="let n of game" value={{n.id}}>
-                  {{n.id}}
+                    {{n.id}}
                 </option>
-              </select> 
+            </select> 
             
             Object.values(game.rounds)
             -->
             
-            <form [formGroup]="player" (ngSubmit)="onSelect(); modal.dismiss('Cross click'); onSubmitPlayer();" #formDir="ngForm">
-                <div class="form-group" hidden>
-                    <label for="gameidowner">Game Id</label>
-                    <input type="text" formControlName="gameid" class="form-control" 
-                    [(ngModel)]="enterPlayerData.gameId" placeholder="ID" name="seePut" id="seePut"
-                    />
+                    <form [formGroup]="player" (ngSubmit)="onSelect(); modal.dismiss('Cross click'); onSubmitPlayer();" #formDir="ngForm">
+                        <div class="form-group" hidden>
+                            <label for="gameidowner">Game Id</label>
+                            <input type="text" formControlName="gameid" class="form-control" 
+                            [(ngModel)]="enterPlayerData.gameId" placeholder="ID" name="seePut" id="seePut"
+                            />
+                        </div>
+                        <span class="text-danger" *ngIf="player.hasError('required', 'gameid') && formDir.submitted">
+                            Se necesita gameid.
+                        </span>
+                        <div class="form-group text-light p-2">
+                            <label for="nameowner">Nombre owner</label>
+                            <input type="text" formControlName="name" class="form-control" 
+                            [(ngModel)]="enterPlayerData.temporalp" placeholder="Ingrese su nombre" name="namePut" id="namePut"
+                            />
+                        </div>
+                        <span class="text-danger" *ngIf="player.hasError('required', 'name') && formDir.submitted">
+                            Debe ingresar su nombre.
+                        </span>
+                        <div class="form-group">
+                            <button  class="form-control bg-success text-light" [disabled]="!player.valid" >
+                                Unirse como owner
+                            </button>
+                        </div>
+                    </form>
                 </div>
-                <span class="text-danger" *ngIf="player.hasError('required', 'gameid') && formDir.submitted">
-                  Se necesita gameid.
-                </span>
-
-
-                <div class="form-group">
-                    <label for="nameowner">Nombre owner</label>
-                    <input type="text" formControlName="name" class="form-control" 
-                    [(ngModel)]="enterPlayerData.temporalp" placeholder="Ingrese su nombre" name="namePut" id="namePut"
-                    />
-                </div>
-                <span class="text-danger" *ngIf="player.hasError('required', 'name') && formDir.submitted">
-                  Debe ingresar su nombre.
-                </span>
-
-
-
-
-                <div class="form-group">
-                    <button  class="form-control bg-success text-light" >
-                        Unirse como owner
-                    </button>
-                </div>
-            </form>
-
-        </div>
-
-
-
-        </div>
-      </form>
+            </div>
+        </form>
     </div>
-    <div class="modal-footer">
-      <button type="button" class="btn btn-outline-dark" (click)="getRoundsByID()">Mostrar detalles</button>
+    <div class="modal-footer" id="modal-f">
+        <button type="button" class="btn btn-outline-dark" (click)="getRoundsByID()">Mostrar detalles</button>
     </div>
-  </ng-template>
-  
+</ng-template>
 
 

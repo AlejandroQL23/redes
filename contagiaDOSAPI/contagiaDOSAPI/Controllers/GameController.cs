@@ -242,21 +242,35 @@ namespace contagiaDOSAPI.Controllers
         [HttpPost]
         public async Task<ActionResult<Game>> go([FromHeader] string name, [FromHeader] string password, int gameId, [FromBody] bool IsPsycho)
         {
+
             roundController = new RoundController(_context);
             if (IsPsycho)
+                {
+
+
+                    Round[] arrayLastRound = (from rounds in _context.Round where rounds.GameId == gameId select rounds).ToArray();
+                    Round lastRound = arrayLastRound[arrayLastRound.Length - 1];
+                    lastRound.Psychowin = true;
+                    roundController.PutRound(lastRound);
+
+                }
+                Game gamePut = (from games in _context.Game where games.GameId == gameId select games).FirstOrDefault();
+                Round[] psycho = (from rounds in _context.Round where (rounds.GameId == gameId) && (rounds.Psychowin == true) select rounds).ToArray();
+                Round[] exemplary = (from rounds in _context.Round where (rounds.GameId == gameId) && (rounds.Psychowin == false) select rounds).ToArray();
+               
+            if (psycho.Length >= 3 || exemplary.Length>=3)
+            {
+                gamePut.Status = "Ended";
+                PutStatus(gamePut);
+            }
+            else
             {
 
-                
-                Round[] arrayLastRound = (from rounds in _context.Round where rounds.GameId == gameId select rounds).ToArray();
-                Round lastRound = arrayLastRound[arrayLastRound.Length-1];
-                lastRound.Psychowin = true;
-                roundController.PutRound(lastRound);
-
+                Round round = new Round();
+                round.GameId = gameId;
+                roundController.PostRound(round);
             }
-            Round round = new Round();
-            round.GameId = gameId;
-            roundController.PostRound(round);
-
+            
             return Ok();
 
         }

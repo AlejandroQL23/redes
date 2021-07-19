@@ -56,15 +56,7 @@
             <div class="col-md-6 col-sm-12">
                 <div class="card">
                     <div class="card-body">
-                        <form id="server-form" role="form" action="" method="post">
-                            <div class="col-md-12 col-sm-12">
-                                <input type="text" [(ngModel)]="gameData.owner" class="form-control text-center" placeholder="Ingrese direccion del servidor" name="name" required="">
-                            </div>
-                        
-                            <div class="col-md-4 col-sm-12 mt-1">
-                                <input type="submit" class="form-control text-light text-center" name="createNew" value="Acceder a servidor">
-                            </div>
-                        </form>
+
                         <form id="contact-form" role="form" action="" method="post">
                             <div class="section-title">
                                 <h2>Ingresa tus datos</h2>
@@ -76,7 +68,7 @@
                                 <input type="text" [(ngModel)]="gameData.password" class="form-control text-light text-center"
                                     placeholder="Ingrese una contraseña" name="password" required="">
                                 <input type="text" [(ngModel)]="gameData.name" class="form-control text-light text-center"
-                                    placeholder="Ingrese servidor" name="server" required="">
+                                    placeholder="Ingrese nombre del juego" name="server" required="">
                             </div>
                             <div class="row d-flex justify-content-center ml-4">
                                 <div class="col-md-4 col-sm-12">
@@ -122,73 +114,7 @@
 
 <section id="game" [hidden]="IsHidden2">
     <div class="container">
-        <!-- <div class="row"> -->
-            <!-- <div class="col-md-6 col-sm-12 d-inline" id="columnas"> -->
-                <!-- Collapse buttons -->
-                <!-- <div>
-                    <button class="btn btn-secondary" type="button" data-toggle="collapse"
-                        data-target="#collapseExample" (click)="isCollapsed = !isCollapsed"
-                        [attr.aria-expanded]="!isCollapsed" aria-controls="collapseExample">
-                        NombreIngresadoC:
-                    </button>
-                    <button class="btn btn-secondary" type="button" data-toggle="collapse"
-                        data-target="#collapseExample2" (click)="isCollapsed2 = !isCollapsed2"
-                        [attr.aria-expanded]="!isCollapsed2" aria-controls="collapseExample2">
-                        NombreIngresadoP: 
-                    </button>
-                </div> -->
-                <!-- / Collapse buttons -->
-                <!-- Collapsible element -->
-                <!-- <div class="collapse" id="collapseExample" [ngbCollapse]="isCollapsed">
-                    <div class="card" style="width: 18rem;">
-                        <div class="card-body">
-                            <h5 class="card-title">Eres: </h5>  
-                            <div *ngIf="game" class="game">
-                                <div><span>Puntos: </span>{{game.points}}</div>
-                                <br>
-                                <div><span>Lider: </span>{{game.status}}</div>
-                                <br>
-                                <div><span>Dueño: </span>{{game.owner}}</div>
-                                <br>
-                                <div><span>Semana: </span>{{game.rounds}}</div>
-                            </div>
-                            <button href="#" class="btn btn-success">Usar mascarilla</button>
-                        </div>
-                    </div>
-                </div>
-                <div class="collapse" id="collapseExample2" [ngbCollapse]="isCollapsed2">
-                    <div class="card" style="width: 18rem;">
-                        <div class="card-body">
-                            <h5 class="card-title">Eres: , junto con: </h5>
-                            <div *ngIf="game" class="game">
-                                <div><span>Puntos: </span>{{game.points}}</div>
-                                <br>
-                                <div><span>Lider: </span>{{game.status}}</div>
-                                <br>
-                                <div><span>Dueño: </span>{{game.owner}}</div>
-                                <br>
-                                <div><span>Semana: </span>{{game.rounds}}</div>
-                            </div>
-                            <p class="card-text">Elige las personas que saldrán:</p>
-                            <div class="form-check">
-                                <input class="form-check-input" type="checkbox" value="" id="flexCheckIndeterminate">
-                                <label class="form-check-label" for="flexCheckIndeterminate">
-                                    Nombres
-                                </label>
-                            </div>
-                            <button href="#" class="btn btn-success">Usar mascarilla</button>
-                            <button href="#" class="btn btn-danger">No usar mascarilla</button>
-                        </div>
-                    </div>
-                </div> -->
-                <!-- / Collapsible element 
-
-                <div class="col-md-4 col-sm-12" hidden>
-                    <input type="text" [(ngModel)]="playerData.gameId" class="form-control" name="seeDetails" disabled>
-                    <input type="text" [(ngModel)]="playerData.owner" placeholder="owner" class="form-control" name="seeDetails">
-                    <input type="password" [(ngModel)]="playerData.password" class="form-control" name="seeDetails" disabled>
-                        <button (click)="getRoundsByID()" >Detalles</button>
-                </div> -->
+       
 
                 <br>
                 <br>
@@ -198,7 +124,7 @@
                     <div class="col-6">
                         <div class="card">
                             <div class="card-body">
-                                <label>Ingrese participante</label>
+                                <label>Psicopata</label>
                                 <input type="text" [(ngModel)]="enterPlayerData.gameId" placeholder="ID" class="form-control" name="seePut" id="seePut"disabled hidden>
                                 <input type="text" [(ngModel)]="playerIsPsycho.psycho" placeholder="Eres ..." class="form-control text-light" name="namePut" id="namePut" >
                                 <input type="password" [(ngModel)]="enterPlayerData.password" placeholder="Contraseña" class="form-control" name="passPut" id="passPut"disabled hidden>
@@ -225,8 +151,7 @@
                                 <input type="text"  placeholder="Nombre del lider" class="form-control" name="b" id="b">
                                 <input type="password" [(ngModel)]="groupPro.password" placeholder="Contraseña" class="form-control" name="c" id="c" disabled hidden>
     
-                                <!-- <input type="text" [(ngModel)]="forPartici.player1" class="form-control" name="forPa" id="forPa">
-                                <input type="text" [(ngModel)]="forPartici.player2" class="form-control" name="forPa2" id="forPa2"> -->
+
                                 <form (submit)="submit()" [formGroup]="registerForm">
                                     <div class="form-group mt-2">
                                         <a class="btn btn-primary" (click)="agregarTelefono()">Saldrán:</a>
@@ -267,84 +192,31 @@
                     </div>
                 </div>
 
-                <!-- <div class="col-md-4 col-sm-12">
-                    <div class="card">
-                        <div class="card-body">
-                            <label>Ingrese participante</label>
-                            <input type="text" [(ngModel)]="enterPlayerData.gameId" placeholder="ID" class="form-control" name="seePut" id="seePut"disabled hidden>
-                            <input type="text" [(ngModel)]="playerIsPsycho.psycho" placeholder="Eres ..." class="form-control" name="namePut" id="namePut">
-                            <input type="password" [(ngModel)]="enterPlayerData.password" placeholder="Contraseña" class="form-control" name="passPut" id="passPut"disabled hidden>
-                            <button class="btn btn-primary" (click)="cargaInfoPsycho()" >¿Seré psicopata?</button>
-                        </div>
-                    </div>
-                </div> -->
-                <div class="col-md-4 col-sm-12">
-                    <!-- <div class="card">
-                        <div class="card-body">
-                            <label>Iniciar partida</label>
-                            <input type="text" [(ngModel)]="startGame.gameId" placeholder="ID" class="form-control" name="seePut" id="seePut" disabled hidden>
-                            <input type="text" [(ngModel)]="startGame.name" placeholder="NombreDueño" class="form-control" name="e" id="e" disabled>
-                            <input type="password" [(ngModel)]="startGame.password" placeholder="Contraseña" class="form-control" name="passPut" id="passPut" disabled hidden>
-                            <input (click)="gameStart()" type="submit" class="form-control bg-success text-light" name="Start" value="Iniciar partida">
-                        </div>
-                    </div> -->
-                </div>
-                <div class="col-md-4 col-sm-12">
-                   <!-- <div class="card">
-                        <div class="card-body">
-                            <label>Ingrese lider</label>
-                            <input type="text" [(ngModel)]="groupPro.gameId" placeholder="ID" class="form-control" name="a" id="a" disabled hidden>
-                            <input type="text" [(ngModel)]="groupPro.name" placeholder="Nombre del lider" class="form-control" name="b" id="b">
-                            <input type="password" [(ngModel)]="groupPro.password" placeholder="Contraseña" class="form-control" name="c" id="c" disabled hidden>
+              
 
-                             <input type="text" [(ngModel)]="forPartici.player1" class="form-control" name="forPa" id="forPa">
-                            <input type="text" [(ngModel)]="forPartici.player2" class="form-control" name="forPa2" id="forPa2"> 
-                            <form (submit)="submit()" [formGroup]="registerForm">
-                                <div class="form-group">
-                                    <a class="btn btn-primary" (click)="agregarTelefono()">Saldrán:</a>
-                                </div>
-                                <div formArrayName="telefonos" *ngFor="let telefono of telefonos.controls; let i = index">
-                                    <div [formGroupName]="i">
-                                        <div class="form-group row">
-                                            <div class="col-md-7">
-                                                <input type="text" placeholder="Enviar a:" [attr.id]="'telefono' + i" class="form-control" formControlName="telefono">
-                                            </div>
-                                            <div class="col-md-2">
-                                                <button class="btn btn-danger" (click)="removerTelefono(i)">X</button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <button type="submit" class="btn btn-success" [disabled]="registerForm.invalid" >Confirmar</button>
-                            </form>
-                            <button (click)="setGroup()" class="btn btn-primary" >Enviar</button>
-                        </div>
-                    </div>-->
-                </div>
 
                 <br>
                 <br>
                 <br>
 
-                <div class="col-md-4 col-sm-12">
-                    <!-- <div class="card">
-                        <div class="card-body">
-                            <label>Llamar de regreso</label>
-                            <input type="text" [(ngModel)]="go.gameId" class="form-control" name="1" id="1" disabled hidden>
-                            <input type="text" [(ngModel)]="go.name" placeholder="regresa:" class="form-control" name="2" id="2">
-                            <input type="password" [(ngModel)]="go.password" class="form-control" name="3" id="3" disabled hidden>
-                            <button  class="btn btn-danger" (click)="startRound2()">Regresar y no usar mascarilla</button>
-                            <button class="btn btn-primary" (click)="startRound()" >Regresar y usar mascarilla</button> Este era el de regresar
-                        </div>
-                    </div> -->
-                </div>
-            <!-- </div> -->
+
+
             <div class="row">
                 <div class="d-flex justify-content-center">
                     <input type="submit" class="form-control bg-primary text-light" (click)="onSelect(); refresh();" name="join" value="Volver a MENU">
                 </div>
+
+               
             </div>
-        <!-- </div> -->
+            <br>
+            <br>
+            <br>
+            <label>Salidas por semana, segun cantidad de jugadores</label>
+            <br>
+            <br>
+            <br>
+            <img src="../assets/images/Salidas.png" width="500" height="300">
+
     </div>
 </section>
 
@@ -377,9 +249,9 @@
                             <div class="card">
                                 <div class="card-body">
                                     <div><span>Id: </span>{{game.gameId}}</div>
-                                    <div><span>Name: </span>{{game.name}}</div>
+                                    <div><span>Nombre: </span>{{game.name}}</div>
                                     <div><span>Dueño: </span>{{game.owner}}</div>
-                                    <div><span>Password: </span>{{game.password}}</div>
+                                    <div><span>Contraseña: </span>{{game.password}}</div>
                                 </div>
                             </div>
                             
@@ -388,7 +260,7 @@
                             <div class="card">
                                 <div class="card-body">
                                     <div><span>Jugadores: </span >{{game.players}}</div>
-                                        <div><span>Estatus: </span>{{game.status}}</div>
+                                        <div><span>Estado: </span>{{game.status}}</div>
                                 </div>
                             </div>
                         </div>
@@ -421,14 +293,7 @@
                         </div>
                     </form>
 
-            <!-- <select formControlName="rounds" [value]='game.rounds.id'>
-                <option *ngFor="let n of game" value={{n.id}}>
-                    {{n.id}}
-                </option>
-            </select> 
-            
-            Object.values(game.rounds)
-            -->
+
             
                     <form [formGroup]="player" (ngSubmit)="onSelect(); modal.dismiss('Cross click'); onSubmitPlayer();" #formDir="ngForm">
                         <div class="form-group" hidden>
@@ -441,7 +306,7 @@
                             Se necesita gameid.
                         </span>
                         <div class="form-group text-light p-2">
-                            <label for="nameowner">Nombre owner</label>
+                            <label for="nameowner">Nombre dueño</label>
                             <input type="text" formControlName="name" class="form-control" 
                             [(ngModel)]="enterPlayerData.temporalp" placeholder="Ingrese su nombre" name="namePut" id="namePut"
                             />
@@ -451,7 +316,7 @@
                         </span>
                         <div class="form-group">
                             <button  class="form-control bg-success text-light" [disabled]="!player.valid" >
-                                Unirse como owner
+                                Unirse como dueño
                             </button>
                         </div>
                     </form>

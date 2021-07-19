@@ -1,21 +1,25 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Vampirin\\OneDrive\\Escritorio\\redes\\contagiaDOSAPI\\contagiaDOSAPI\\contagiaDOSAPI.csproj": {}
+    "C:\\RedesPro\\redes\\contagiaDOSAPI\\contagiaDOSAPI\\contagiaDOSAPI.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Vampirin\\OneDrive\\Escritorio\\redes\\contagiaDOSAPI\\contagiaDOSAPI\\contagiaDOSAPI.csproj": {
+    "C:\\RedesPro\\redes\\contagiaDOSAPI\\contagiaDOSAPI\\contagiaDOSAPI.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Vampirin\\OneDrive\\Escritorio\\redes\\contagiaDOSAPI\\contagiaDOSAPI\\contagiaDOSAPI.csproj",
+        "projectUniqueName": "C:\\RedesPro\\redes\\contagiaDOSAPI\\contagiaDOSAPI\\contagiaDOSAPI.csproj",
         "projectName": "contagiaDOSAPI",
-        "projectPath": "C:\\Users\\Vampirin\\OneDrive\\Escritorio\\redes\\contagiaDOSAPI\\contagiaDOSAPI\\contagiaDOSAPI.csproj",
-        "packagesPath": "C:\\Users\\Vampirin\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Vampirin\\OneDrive\\Escritorio\\redes\\contagiaDOSAPI\\contagiaDOSAPI\\obj\\",
+        "projectPath": "C:\\RedesPro\\redes\\contagiaDOSAPI\\contagiaDOSAPI\\contagiaDOSAPI.csproj",
+        "packagesPath": "C:\\Users\\Ale\\.nuget\\packages\\",
+        "outputPath": "C:\\RedesPro\\redes\\contagiaDOSAPI\\contagiaDOSAPI\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Progress\\ToolboxNuGetPackages"
+        ],
         "configFilePaths": [
-          "C:\\Users\\Vampirin\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+          "C:\\Users\\Ale\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Telerik UI for WPF.config"
         ],
         "originalTargetFrameworks": [
           "netcoreapp3.1"
@@ -82,7 +86,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.205\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.201\\RuntimeIdentifierGraph.json"
         }
       }
     }

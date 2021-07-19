@@ -255,7 +255,7 @@ namespace contagiaDOSAPI.Controllers
             }
             else
             {
-                result = Ok(playerPoS); //supervisorFoD.Psycho
+                result = Ok(playerPoS); 
             }
 
             return result;

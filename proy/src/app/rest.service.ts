@@ -118,8 +118,6 @@ export class RestService {
       })
     };
     return this.http.put(this.getEndpoint() + 'Game/'+enterPlayerData.gameId+'/join', JSON.stringify(enterPlayerData), httpOptions);
-    // put -> post  // 'game/' + enterPlayerData.gameId + '/join'
-    //, JSON.stringify(enterPlayerData)
   }
 
   //HEAD
@@ -133,8 +131,6 @@ export class RestService {
       })
     }; 
     return this.http.head(this.getEndpoint() + 'Game/'+gameId+'/start', httpOptions);
-    // 'game/' + gameData.gameId + '/start'
-    //JSON.stringify(startGame)
   }
 
   //POST1

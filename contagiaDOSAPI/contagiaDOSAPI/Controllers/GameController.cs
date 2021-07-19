@@ -15,7 +15,6 @@ namespace contagiaDOSAPI.Controllers
     [Route("[controller]")]
     [ApiController]
     [AllowAnonymous]
-    //[EnableCors("AllowOrigin")]
     public class GameController : ControllerBase
     {
         private readonly contagiaDOSredesContext _context;
@@ -45,7 +44,6 @@ namespace contagiaDOSAPI.Controllers
 
         // GET: Game/5
         [EnableCors("GetAllPolicy")]
-        //[Route("[action]")]
         [HttpGet("{id}")]
         public async Task<ActionResult<Game>> GetGame([FromHeader] string name, [FromHeader] string password, int id)
         {
@@ -62,7 +60,7 @@ namespace contagiaDOSAPI.Controllers
         }
 
         //---------------------------------------------------------------------
-        // PUT: Game/1 --->Also you have to put the id 
+        // PUT: Game/1
         [EnableCors("GetAllPolicy")]
         [Route("{games.GameId}/[action]")]
         [HttpPut]
@@ -72,6 +70,7 @@ namespace contagiaDOSAPI.Controllers
 
   
             games.Players = temporalPlayers + " , " + temporalp;
+            games.Status = "Lobby";
 
 
             _context.Entry(games).State = EntityState.Modified;
@@ -79,7 +78,7 @@ namespace contagiaDOSAPI.Controllers
             try
             {
 
-                savePlayer(temporalp, games);//await
+                savePlayer(temporalp, games);
                 await _context.SaveChangesAsync();
 
             }
@@ -101,7 +100,7 @@ namespace contagiaDOSAPI.Controllers
         [EnableCors("GetAllPolicy")]
         [Route("{games.GameId}/[action]")]
         [HttpPut]
-        public async Task<IActionResult> PutStatus(Game games) // NO RETORNA NADA - return ok porque tiene que retornar
+        public async Task<IActionResult> PutStatus(Game games)
         {
            _context.Entry(games).State = EntityState.Modified;
             try
@@ -131,7 +130,6 @@ namespace contagiaDOSAPI.Controllers
         public async Task<ActionResult<Game>> savePlayer(string playername, Game games)
         {
 
-            //-----
             Player p = new Player
             {
                 Id = 0,
@@ -167,7 +165,6 @@ namespace contagiaDOSAPI.Controllers
 
             await _context.SaveChangesAsync();
 
-            //-----
             Player p = new Player
             {
                 Id = 0,
@@ -178,7 +175,6 @@ namespace contagiaDOSAPI.Controllers
 
             playerController = new PlayerController(_context);
             playerController.PostPlayer(p);
-            // games.Player = (ICollection<Player>)p;
 
 
             return CreatedAtAction("GetGames", new { id = games.GameId }, games);

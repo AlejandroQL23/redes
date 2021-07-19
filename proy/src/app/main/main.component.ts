@@ -26,7 +26,7 @@ export class MainComponent implements OnInit {
   returnUrlSupporter: string;
 //----------------------------
   @Input() playerData = { gameId: '', owner: '', password: '' };
-  @Input() enterPlayerData = { gameId: '', temporalp: '', password: ''};//////
+  @Input() enterPlayerData = { gameId: '', temporalp: '', password: ''};
   @Input() go = { gameId: '', name: '', password: '' };
   @Input() startGame = { gameId: '', name: '', password: '' };
   @Input() groupPro = { gameId: '', name: '', password: '' };
@@ -101,13 +101,6 @@ export class MainComponent implements OnInit {
   }
 
 
-  // enterServer() {
-  //  if (!this.useDefaultServer){
-  //    this.rest.setCustomServerAddress(this.form.get('serverAddres').value);
-  //  }
-  //  this.rest.setUseDefaultServer(this.useDefaultServer);
-  // }
-
 //---------------------------------------------------------------
   open(content, id) {
     this.modalService.open(content, { ariaLabelledBy: 'modal-basic-title' }).result.then((result) => {
@@ -123,17 +116,8 @@ export class MainComponent implements OnInit {
   }
 
 
-  filtrando : any = [] ;
   cargaInfoPsycho(){
-    console.log(this.ID + " sancho pamza");
-    this.getPlayerById( this.playerIsPsycho); ///this.ID no trae el ID
-
-    // this.filtrando = this.getPlayerById( this.playerIsPsycho.psycho);
-    //  if ( this.filtrando == false ){
-    //      console.log("No es psycho no habilito mascarilla")
-    //  }else{
-    //    console.log("Soy psycho  habilito mascarilla")
-    //  }
+    this.getPlayerById( this.playerIsPsycho); 
   }
 //---------------------------------------------------------------
 
@@ -210,9 +194,6 @@ export class MainComponent implements OnInit {
           const content = Swal.getHtmlContainer()
           if (content) {
             const b = content.querySelector('b')
-            // if (b) {
-            //   b.textContent = Swal.getTimerLeft()
-            // }
           }
         }, 100)
       },
@@ -221,7 +202,6 @@ export class MainComponent implements OnInit {
         this.refresh();
       }
     }).then((result) => {
-      /* Read more about handling dismissals below */
       if (result.dismiss === Swal.DismissReason.timer) {
         console.log('I was closed by the timer')
       }
@@ -243,7 +223,7 @@ export class MainComponent implements OnInit {
 //---------------------------------------------------------------
   gameStart() {
     this.rest.gameStart(this.startGame,this.startGame.gameId).subscribe((result) => {
-      // this.router.navigate(['']);
+
       console.log("si pasa por el gameStart");
     }, (err) => {
       console.log(err);
@@ -252,7 +232,7 @@ export class MainComponent implements OnInit {
 //---------------------------------------------------------------
   setGroup() {
     this.rest.setGroup(this.groupPro, this.telArray).subscribe((result) => {
-      // this.router.navigate(['']);
+
       console.log("si pasa por el setGroup");
     }, (err) => {
       console.log(err);
@@ -266,7 +246,7 @@ export class MainComponent implements OnInit {
   startRound() {
     if(this.totalArray == 0){
       this.rest.startRound(false, this.go).subscribe((result) => {
-        // this.router.navigate(['']);
+
         console.log("si pasa por el startRound");
       }, (err) => {
         console.log(err);
@@ -279,7 +259,7 @@ export class MainComponent implements OnInit {
   startRound2() {
     if(this.totalArray == 0){
       this.rest.startRound(true, this.go).subscribe((result) => {
-        // this.router.navigate(['']);
+
         console.log("si pasa por el startRound");
       }, (err) => {
         console.log(err);
